@@ -12,10 +12,6 @@ import java.util.ArrayList;
  * @author Carlos
  */
 public class Servei {
-
-// es un comentario de mari
-    
-    ///////////////////////////////////////////
     Trabajador trabajador;
     String servei;
     static ArrayList<Servei> llistaServeis = new ArrayList();
