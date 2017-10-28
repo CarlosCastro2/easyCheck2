@@ -5,6 +5,8 @@
  */
 package clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Carlos
@@ -20,8 +22,11 @@ public class Reserva {
     String emailClient;
     String QRClient;
     String localitzador;
-
-    public Reserva(Integer id, Integer idServei, String nomClient, String cognomClient, String dniClient, String dataServei, String horaServei, String emailClient, String QRClient, String localitzador) {
+    String checkIn;
+    static ArrayList<Reserva> reservas  = new ArrayList();
+    
+    public Reserva (){}
+    public Reserva(Integer id, Integer idServei, String nomClient, String cognomClient, String dniClient, String dataServei, String horaServei, String emailClient, String QRClient, String localitzador, String checkIn) {
         this.id = id;
         this.idServei = idServei;
         this.nomClient = nomClient;
@@ -32,8 +37,15 @@ public class Reserva {
         this.emailClient = emailClient;
         this.QRClient = QRClient;
         this.localitzador = localitzador;
+        this.checkIn = checkIn;
     }
-
+    public void setCheckIn(String checkIn){
+        this.checkIn = checkIn;
+    }
+    
+    public String getCheckIn(){
+        return checkIn;
+    }
     public Integer getId() {
         return id;
     }
@@ -114,4 +126,14 @@ public class Reserva {
         this.localitzador = localitzador;
     }
     
+    public static ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public static void setReservas(Reserva reserva) {
+        Reserva.reservas.add(reserva);
+    }
+    public String toString(){
+        return nomClient+" "+cognomClient+" Dni: "+dniClient;
+    }
 }

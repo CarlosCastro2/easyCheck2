@@ -5,12 +5,16 @@
  */
 package interficies;
 import java.awt.event.ItemEvent;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ArrayList;
+import javax.swing.event.ListSelectionListener;
 import clases.Treballador;
+import clases.Reserva;
 import clases.Servei;
 /**
  *
@@ -31,8 +35,19 @@ public class llistaServeis extends javax.swing.JFrame {
         
         modeloLista = new DefaultListModel();
         jlista.setModel(modeloLista);
-        
-        
+        jlista.addListSelectionListener(new ListSelectionListener() {
+		@Override
+		public void valueChanged(ListSelectionEvent arg0) {
+                    String servei = ((JList)arg0.getSource()).getSelectedValue().toString();
+                    int idServei = Integer.parseInt(servei);
+                    System.out.println(servei);
+                    llistaReserves llistaReserves = new llistaReserves(idServei);
+                    llistaReserves.setVisible(true);
+                //this.setLocationRelativeTo(null);
+                    JOptionPane.showMessageDialog(null,"Servicio seleccionado: "+servei);
+		}	
+	});
+
         choiceTrabajador.addItemListener(new java.awt.event.ItemListener(){
             @Override
             public void itemStateChanged(ItemEvent ie) {     
@@ -45,9 +60,9 @@ public class llistaServeis extends javax.swing.JFrame {
                 while(it.hasNext()){
                     Servei servei = (Servei) it.next();
                     if (choiceTrabajador.getSelectedIndex()== servei.getTreballador().getId()){
-                        modeloLista.addElement(servei.getServei());
+                        modeloLista.addElement(servei.getIdServei());
                     } else if (choiceTrabajador.getSelectedItem().equalsIgnoreCase("Tots")) {
-                        modeloLista.addElement(servei.getServei());
+                        modeloLista.addElement(servei.getIdServei());
                     }   
                 } 
             }
@@ -63,13 +78,16 @@ public class llistaServeis extends javax.swing.JFrame {
         choiceTrabajador.add(t1.getNom());
         choiceTrabajador.add(t2.getNom());
         choiceTrabajador.add(t3.getNom());
-        Servei s1 = new Servei (t1,"Sabadell - Sevilla");
-        Servei s2 = new Servei (t1,"Sevilla - Sabadell");
-        Servei s3 = new Servei (t2,"Formentera - Ibiza");
-        Servei s4 = new Servei (t2,"Ibiza - Formentera");
-        Servei s5 = new Servei (t3,"Barcelona - Paris");
-        Servei s6 = new Servei (t3,"Paris - Barcelona");
+        Servei s1 = new Servei (t1,"Sabadell - Sevilla",1);
+        Servei s2 = new Servei (t1,"Sevilla - Sabadell",2);
+        Servei s3 = new Servei (t2,"Formentera - Ibiza",3);
+        Servei s4 = new Servei (t2,"Ibiza - Formentera",4);
+        Servei s5 = new Servei (t3,"Barcelona - Paris",5);
+        Servei s6 = new Servei (t3,"Paris - Barcelona",6);
         Servei.setLlistaServeis(s1); Servei.setLlistaServeis(s2);Servei.setLlistaServeis(s3);Servei.setLlistaServeis(s4);Servei.setLlistaServeis(s5);Servei.setLlistaServeis(s6);
+        
+        Reserva r1 = new Reserva (1,1,"Alberto","Garcia","47169530D","13/02/2018","10:30","alberto@gmail.com","QR12345","LOC1234","0");
+        Reserva.setReservas(r1);
     }
 
     public void agregarValores() {
