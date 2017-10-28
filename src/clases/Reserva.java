@@ -12,33 +12,35 @@ import java.util.ArrayList;
  * @author Carlos
  */
 public class Reserva {
-    Integer id;
-    Integer idServei;
+    Integer _id;
+    Integer id_servei;
+    String localitzador;
     String nomClient;
     String cognomClient;
+    String cognomClient2;
     String dniClient;
     String dataServei;
-    String horaServei;
     String emailClient;
     String QRClient;
-    String localitzador;
+    
     String checkIn;
     static ArrayList<Reserva> reservas  = new ArrayList();
     
     public Reserva (){}
-    public Reserva(Integer id, Integer idServei, String nomClient, String cognomClient, String dniClient, String dataServei, String horaServei, String emailClient, String QRClient, String localitzador, String checkIn) {
-        this.id = id;
-        this.idServei = idServei;
+    public Reserva(Integer id, Integer idServei, String localitzador, String dataServei, String nomClient, String cognomClient,String cognomClient2,String emailClient, String QRClient, String dniClient, String checkIn) {
+        this._id = id;
+        this.id_servei = idServei;
+        this.localitzador = localitzador;
+        this.dataServei = dataServei;
         this.nomClient = nomClient;
         this.cognomClient = cognomClient;
-        this.dniClient = dniClient;
-        this.dataServei = dataServei;
-        this.horaServei = horaServei;
+        this.cognomClient2 = cognomClient2;
         this.emailClient = emailClient;
         this.QRClient = QRClient;
-        this.localitzador = localitzador;
+        this.dniClient = dniClient;
         this.checkIn = checkIn;
     }
+    
     public void setCheckIn(String checkIn){
         this.checkIn = checkIn;
     }
@@ -47,19 +49,19 @@ public class Reserva {
         return checkIn;
     }
     public Integer getId() {
-        return id;
+        return _id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this._id = id;
     }
 
     public Integer getIdServei() {
-        return idServei;
+        return id_servei;
     }
 
     public void setIdServei(Integer idServei) {
-        this.idServei = idServei;
+        this.id_servei = idServei;
     }
 
     public String getNomClient() {
@@ -77,7 +79,14 @@ public class Reserva {
     public void setCognomClient(String cognomClient) {
         this.cognomClient = cognomClient;
     }
+    
+    public String getCognomClient2() {
+        return cognomClient2;
+    }
 
+    public void setCognomClient2(String cognomClient2) {
+        this.cognomClient2 = cognomClient2;
+    }
     public String getDniClient() {
         return dniClient;
     }
@@ -92,14 +101,6 @@ public class Reserva {
 
     public void setDataServei(String dataServei) {
         this.dataServei = dataServei;
-    }
-
-    public String getHoraServei() {
-        return horaServei;
-    }
-
-    public void setHoraServei(String horaServei) {
-        this.horaServei = horaServei;
     }
 
     public String getEmailClient() {
