@@ -13,11 +13,11 @@ import java.util.ArrayList;
  */
 public class Treballador {
     public String nom,cognom1,cognom2,login,password,esAdmin,dni;
-
+int _id;
     public Treballador() {
     }
 
-    public Treballador(String nom, String cognom1, String cognom2, String login, String password, String esAdmin, String dni) {
+    public Treballador(int _id,String nom, String cognom1, String cognom2, String login, String password, String esAdmin, String dni) {
         this.nom = nom;
         this.cognom1 = cognom1;
         this.cognom2 = cognom2;
@@ -25,6 +25,15 @@ public class Treballador {
         this.password = password;
         this.esAdmin = esAdmin;
         this.dni = dni;
+        this._id=_id;
+    }
+
+    public int getId() {
+        return _id;
+    }
+
+    public void setId(int _id) {
+        this._id = _id;
     }
     static ArrayList<Treballador> treballador  = new ArrayList();
 

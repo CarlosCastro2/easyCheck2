@@ -27,6 +27,7 @@ public class GestioUsuaris extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         model = new DefaultListModel();
+        //_id.setVisible(false);
     }
 
     /**
@@ -60,6 +61,7 @@ public class GestioUsuaris extends javax.swing.JFrame {
         dni = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListTreballadors = new javax.swing.JList<>();
+        _id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,7 +146,9 @@ public class GestioUsuaris extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel7))
                                     .addComponent(nom, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(242, 242, 242))))
+                                .addGap(69, 69, 69)
+                                .addComponent(_id, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(93, 93, 93))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addComponent(btnAfegir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,7 +192,8 @@ public class GestioUsuaris extends javax.swing.JFrame {
                             .addComponent(esAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel8)
-                                .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -273,6 +278,7 @@ public class GestioUsuaris extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField _id;
     private javax.swing.JButton btnAfegir;
     private javax.swing.JButton btnEsborra;
     private javax.swing.JButton btnModificar;
@@ -305,6 +311,8 @@ public class GestioUsuaris extends javax.swing.JFrame {
         String sPassword = password.getText();
         String sDni = dni.getText();
         String sEsAdmin = "";
+        
+        int Id= Integer.parseInt(_id.getText());
 
         if (esAdmin.getState()) {
             sEsAdmin = "1";
@@ -312,7 +320,7 @@ public class GestioUsuaris extends javax.swing.JFrame {
             sEsAdmin = "0";
         }
 
-        return new Treballador(sNom, sCognom, sCognom2, sLogin, sPassword, sEsAdmin, sDni);
+        return new Treballador(Id,sNom, sCognom, sCognom2, sLogin, sPassword, sEsAdmin, sDni);
 
     }
 
@@ -330,6 +338,8 @@ public class GestioUsuaris extends javax.swing.JFrame {
         } else {
             esAdmin.setState(false);
         }
+        int sId=t.getId();
+        _id.setText(Integer.toString(sId));
 
     }
 
@@ -341,6 +351,7 @@ public class GestioUsuaris extends javax.swing.JFrame {
         password.setText("");
         dni.setText("");
         esAdmin.setState(false);
+        _id.setText("");
     }
 
 }
