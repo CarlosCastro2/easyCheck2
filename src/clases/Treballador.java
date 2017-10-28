@@ -13,7 +13,8 @@ import java.util.ArrayList;
  */
 public class Treballador {
     public String nom,cognom1,cognom2,login,password,esAdmin,dni;
-int _id;
+    int _id;
+    static ArrayList<Treballador> treballadors  = new ArrayList();
     public Treballador() {
     }
 
@@ -35,18 +36,18 @@ int _id;
     public void setId(int _id) {
         this._id = _id;
     }
-    static ArrayList<Treballador> treballador  = new ArrayList();
+    
 
     public String getNom() {
         return nom;
     }
 
-    public static ArrayList<Treballador> getTreballador() {
-        return treballador;
+    public static ArrayList<Treballador> getTreballadors() {
+        return treballadors;
     }
 
-    public static void setTreballador(ArrayList<Treballador> treballador) {
-        Treballador.treballador = treballador;
+    public static void setTreballadors(Treballador treballador) {
+        Treballador.treballadors.add(treballador);
     }
 
     public void setNom(String nom) {

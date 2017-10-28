@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ArrayList;
-import clases.Trabajador;
+import clases.Treballador;
 import clases.Servei;
 /**
  *
@@ -44,7 +44,7 @@ public class llistaServeis extends javax.swing.JFrame {
                 modeloLista.clear();
                 while(it.hasNext()){
                     Servei servei = (Servei) it.next();
-                    if (choiceTrabajador.getSelectedIndex()== servei.getTrabajador().getId()){
+                    if (choiceTrabajador.getSelectedIndex()== servei.getTreballador().getId()){
                         modeloLista.addElement(servei.getServei());
                     } else if (choiceTrabajador.getSelectedItem().equalsIgnoreCase("Tots")) {
                         modeloLista.addElement(servei.getServei());
@@ -54,10 +54,11 @@ public class llistaServeis extends javax.swing.JFrame {
         });
     }
     public void añadirObjetosAClases(){
-        Trabajador t1 = new Trabajador(1,"Carlos","Castro","47169530A");
-        Trabajador t2 = new Trabajador(2,"Toni","Torres","47169530B");
-        Trabajador t3 = new Trabajador(3,"Mari","Ortega","47169530B");
-        Trabajador.setTrabajadores(t1); Trabajador.setTrabajadores(t2); Trabajador.setTrabajadores(t3);
+        Treballador t1= new Treballador (1,"Carlos","Castro","Cañabate","user","password","0","47169530A");
+        Treballador t2= new Treballador (2,"Toni","Torres","Marí","user","password","0","47169530B");
+        Treballador t3= new Treballador (3,"Maria","Ortega","Cobos","user","password","0","47169530C");
+        Treballador.setTreballadors(t1);Treballador.setTreballadors(t2);Treballador.setTreballadors(t3);
+
         choiceTrabajador.add("Tots");
         choiceTrabajador.add(t1.getNom());
         choiceTrabajador.add(t2.getNom());

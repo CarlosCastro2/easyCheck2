@@ -12,21 +12,21 @@ import java.util.ArrayList;
  * @author Carlos
  */
 public class Servei {
-    Trabajador trabajador;
+    Treballador treballador;
     String servei;
     static ArrayList<Servei> llistaServeis = new ArrayList();
 
-    public Servei(Trabajador trabajador, String servei) {
-        this.trabajador = trabajador;
+    public Servei(Treballador treballador, String servei) {
+        this.treballador = treballador;
         this.servei = servei;
     }
 
-    public Trabajador getTrabajador() {
-        return trabajador;
+    public Treballador getTreballador() {
+        return treballador;
     }
 
-    public void setTrabajador(Trabajador trabajador) {
-        this.trabajador = trabajador;
+    public void setTreballador(Treballador treballador) {
+        this.treballador = treballador;
     }
 
     public String getServei() {
