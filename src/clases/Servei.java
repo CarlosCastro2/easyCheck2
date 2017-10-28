@@ -52,5 +52,7 @@ public class Servei {
     public static void setLlistaServeis(Servei servei) {
         llistaServeis.add(servei);
     }
-    
+    public String toString(){
+        return idServei+" "+servei;
+    }
 }

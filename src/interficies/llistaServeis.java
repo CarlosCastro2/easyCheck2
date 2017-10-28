@@ -24,12 +24,10 @@ public class llistaServeis extends javax.swing.JFrame {
     HashMap<String, String> serviciosMap = new HashMap<String, String>();
     ArrayList <String> serviciosList = new ArrayList();
     DefaultListModel modeloLista;
-    
     /**
      * Creates new form NewJFrame
      */
     public llistaServeis() {
-     
         initComponents();
         añadirObjetosAClases();
         
@@ -39,11 +37,12 @@ public class llistaServeis extends javax.swing.JFrame {
 		@Override
 		public void valueChanged(ListSelectionEvent arg0) {
                     String servei = ((JList)arg0.getSource()).getSelectedValue().toString();
-                    int idServei = Integer.parseInt(servei);
+                    String[] splited = servei.split("\\s+");
+                    int idServei = Integer.parseInt(splited[0]);
                     System.out.println(servei);
                     llistaReserves llistaReserves = new llistaReserves(idServei);
                     llistaReserves.setVisible(true);
-                //this.setLocationRelativeTo(null);
+                    setLocationRelativeTo(null);
                     JOptionPane.showMessageDialog(null,"Servicio seleccionado: "+servei);
 		}	
 	});
@@ -54,15 +53,15 @@ public class llistaServeis extends javax.swing.JFrame {
                 ArrayList<Servei> listaServeis = new ArrayList();
                 listaServeis = Servei.getLlistaServeis();
                 Iterator it = listaServeis.iterator();
-                // choiceTrabajador.getItem(choiceTrabajador.getSelectedIndex());
+                //  choiceTrabajador.getItem(choiceTrabajador.getSelectedIndex());
                 //  JOptionPane.showMessageDialog(null,"Trabajador seleccionado: "+choiceTrabajador.getItem(choiceTrabajador.getSelectedIndex()));
                 modeloLista.clear();
                 while(it.hasNext()){
                     Servei servei = (Servei) it.next();
                     if (choiceTrabajador.getSelectedIndex()== servei.getTreballador().getId()){
-                        modeloLista.addElement(servei.getIdServei());
+                        modeloLista.addElement(servei.toString());
                     } else if (choiceTrabajador.getSelectedItem().equalsIgnoreCase("Tots")) {
-                        modeloLista.addElement(servei.getIdServei());
+                        modeloLista.addElement(servei.toString());
                     }   
                 } 
             }

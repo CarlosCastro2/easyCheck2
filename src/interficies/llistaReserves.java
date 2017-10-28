@@ -21,6 +21,7 @@ public class llistaReserves extends javax.swing.JFrame {
      */
     public llistaReserves(Integer servei) {
         initComponents();
+        setLocationRelativeTo(null);
         this.servei = servei;
         modeloLista = new DefaultListModel();
         jListaReservas.setModel(modeloLista);
