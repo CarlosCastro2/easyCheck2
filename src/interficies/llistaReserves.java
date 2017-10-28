@@ -32,7 +32,7 @@ public class llistaReserves extends javax.swing.JFrame {
         modeloLista.clear();
         while(it.hasNext()){
             Reserva reserva = (Reserva) it.next();
-            if (reserva.getId()== servei){
+            if (reserva.getIdServei()== servei){
                 modeloLista.addElement(reserva.toString());
             } 
         } 
