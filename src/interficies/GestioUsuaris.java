@@ -5,13 +5,19 @@
  */
 package interficies;
 
+import clases.Treballador;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.event.ListSelectionEvent;
 
 /**
  *
  * @author Maria
  */
 public class GestioUsuaris extends javax.swing.JFrame {
+
+    DefaultListModel model;
 
     /**
      * Creates new form GestioUsuaris
@@ -20,6 +26,7 @@ public class GestioUsuaris extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        model = new DefaultListModel();
     }
 
     /**
@@ -47,9 +54,12 @@ public class GestioUsuaris extends javax.swing.JFrame {
         btnEsborra = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        list1 = new java.awt.List();
-        checkbox1 = new java.awt.Checkbox();
+        esAdmin = new java.awt.Checkbox();
         label1 = new java.awt.Label();
+        jLabel8 = new javax.swing.JLabel();
+        dni = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListTreballadors = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,15 +80,14 @@ public class GestioUsuaris extends javax.swing.JFrame {
 
         jLabel5.setText("Login");
 
-        login.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Password");
 
         btnAfegir.setText("Afegir");
+        btnAfegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAfegirActionPerformed(evt);
+            }
+        });
 
         btnEsborra.setText("Esborrar");
 
@@ -87,10 +96,12 @@ public class GestioUsuaris extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Gestionar Usuaris");
 
-        checkbox1.setEnabled(false);
-
         label1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         label1.setText("Administrador");
+
+        jLabel8.setText("DNI");
+
+        jScrollPane1.setViewportView(jListTreballadors);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,9 +111,6 @@ public class GestioUsuaris extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(list1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
@@ -110,10 +118,24 @@ public class GestioUsuaris extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(122, 122, 122)
+                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnEsborra, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(26, 26, 26))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(esAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(dni))
                                     .addComponent(login)
                                     .addComponent(password)
                                     .addComponent(cognom1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,22 +144,14 @@ public class GestioUsuaris extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel7))
                                     .addComponent(nom, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(242, 242, 242))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(112, 112, 112)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnEsborra, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(26, 26, 26))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(242, 242, 242))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addComponent(btnAfegir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(412, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(26, 26, 26))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,17 +183,21 @@ public class GestioUsuaris extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addGap(28, 28, 28)
-                        .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(esAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8)
+                                .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAfegir)
                     .addComponent(btnEsborra)
                     .addComponent(btnModificar))
-                .addGap(28, 28, 28)
-                .addComponent(list1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,12 +215,26 @@ public class GestioUsuaris extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-       this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginActionPerformed
+    private void btnAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirActionPerformed
+
+        inserirList();
+        clearForm();
+
+    }//GEN-LAST:event_btnAfegirActionPerformed
+    public void inserirList() {
+        Treballador tr1 = new Treballador();
+        jListTreballadors.setModel(model);
+        tr1 = RecullirDadesFormulari();
+        model.addElement(tr1);
+        jListTreballadors.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
+            Treballador t = jListTreballadors.getSelectedValue();
+            OmplirFormulari(t);
+        });
+
+    }
 
     /**
      * @param args the command line arguments
@@ -244,9 +276,10 @@ public class GestioUsuaris extends javax.swing.JFrame {
     private javax.swing.JButton btnAfegir;
     private javax.swing.JButton btnEsborra;
     private javax.swing.JButton btnModificar;
-    private java.awt.Checkbox checkbox1;
     private javax.swing.JTextField cognom1;
     private javax.swing.JTextField cognom2;
+    private javax.swing.JTextField dni;
+    private java.awt.Checkbox esAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -254,11 +287,60 @@ public class GestioUsuaris extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JList<Treballador> jListTreballadors;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
-    private java.awt.List list1;
     private javax.swing.JTextField login;
     private javax.swing.JTextField nom;
     private javax.swing.JTextField password;
     // End of variables declaration//GEN-END:variables
+
+    public Treballador RecullirDadesFormulari() {
+        String sNom = nom.getText();
+        String sCognom = cognom1.getText();
+        String sCognom2 = cognom2.getText();
+        String sLogin = login.getText();
+        String sPassword = password.getText();
+        String sDni = dni.getText();
+        String sEsAdmin = "";
+
+        if (esAdmin.getState()) {
+            sEsAdmin = "1";
+        } else {
+            sEsAdmin = "0";
+        }
+
+        return new Treballador(sNom, sCognom, sCognom2, sLogin, sPassword, sEsAdmin, sDni);
+
+    }
+
+    public void OmplirFormulari(Treballador t) {
+        Treballador t2 = new Treballador();
+        nom.setText(t.getNom());
+        cognom1.setText(t.getCognom1());
+        cognom2.setText(t.getCognom2());
+        dni.setText(t.getDni());
+        login.setText(t.getLogin());
+        password.setText(t.getPassword());
+        String value = t.getEsAdmin();
+        if (value.equals("1")) {
+            esAdmin.setState(true);
+        } else {
+            esAdmin.setState(false);
+        }
+
+    }
+
+    public void clearForm() {
+        nom.setText("");
+        cognom1.setText("");
+        cognom2.setText("");
+        login.setText("");
+        password.setText("");
+        dni.setText("");
+        esAdmin.setState(false);
+    }
+
 }

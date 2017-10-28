@@ -5,15 +5,39 @@
  */
 package clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Maria
  */
 public class Treballador {
-    private String nom,cognom1,cognom2,login,password,esAdmin,dni;
+    public String nom,cognom1,cognom2,login,password,esAdmin,dni;
+
+    public Treballador() {
+    }
+
+    public Treballador(String nom, String cognom1, String cognom2, String login, String password, String esAdmin, String dni) {
+        this.nom = nom;
+        this.cognom1 = cognom1;
+        this.cognom2 = cognom2;
+        this.login = login;
+        this.password = password;
+        this.esAdmin = esAdmin;
+        this.dni = dni;
+    }
+    static ArrayList<Treballador> treballador  = new ArrayList();
 
     public String getNom() {
         return nom;
+    }
+
+    public static ArrayList<Treballador> getTreballador() {
+        return treballador;
+    }
+
+    public static void setTreballador(ArrayList<Treballador> treballador) {
+        Treballador.treballador = treballador;
     }
 
     public void setNom(String nom) {
@@ -67,14 +91,9 @@ public class Treballador {
     public void setDni(String dni) {
         this.dni = dni;
     }
+    @Override
+    public String toString(){
+return nom+" "+cognom1+" "+cognom2;}
 
-    public Treballador(String nom, String cognom1, String cognom2, String login, String password, String esAdmin, String dni) {
-        this.nom = nom;
-        this.cognom1 = cognom1;
-        this.cognom2 = cognom2;
-        this.login = login;
-        this.password = password;
-        this.esAdmin = esAdmin;
-        this.dni = dni;
-    }
+   
 }
