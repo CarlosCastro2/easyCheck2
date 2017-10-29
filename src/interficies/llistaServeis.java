@@ -89,7 +89,7 @@ public class llistaServeis extends javax.swing.JFrame {
         Servei.setLlistaServeis(s1); Servei.setLlistaServeis(s2);Servei.setLlistaServeis(s3);Servei.setLlistaServeis(s4);Servei.setLlistaServeis(s5);Servei.setLlistaServeis(s6);
         
         Reserva r1 = new Reserva (1,1,"LOC12345","13/02/2018","Alberto","Garcia","Cortes","alberto@gmail.com","QR12345","47169530D","0");
-        Reserva r2 = new Reserva (2,1,"LOC12345","13/02/2018","Juan","Jimenez","Canos","juan@gmail.com","QR12345","47169530H","0");
+        Reserva r2 = new Reserva (2,1,"LOC12345","13/02/2018","Juan","Jimenez","Canos","juan@gmail.com","QR12345","47169530H","1");
         Reserva r3 = new Reserva (3,2,"LOC12345","13/02/2018","Diego","Ruiz","Mateos","diego@gmail.com","QR12345","47169530I","0");
         Reserva.setReservas(r1);Reserva.setReservas(r2);Reserva.setReservas(r3);
     }

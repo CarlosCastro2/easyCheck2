@@ -24,7 +24,7 @@ public class RenderReservas extends JLabel implements ListCellRenderer {
         setText(valor);
         if (valor.contains("No Realitzat")){
             setIcon(logoNoCheck);
-        }
+        } else setIcon(logoCheck);
         return this;
         
     }
