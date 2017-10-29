@@ -58,7 +58,7 @@ public class llistaServeis extends javax.swing.JFrame {
                 modeloLista.clear();
                 while(it.hasNext()){
                     Servei servei = (Servei) it.next();
-                    if (choiceTrabajador.getSelectedIndex()== servei.getTreballador().getId()){
+                    if (choiceTrabajador.getSelectedIndex()== servei.getId_Treballador()){
                         modeloLista.addElement(servei.toString());
                     } else if (choiceTrabajador.getSelectedItem().equalsIgnoreCase("Tots")) {
                         modeloLista.addElement(servei.toString());
@@ -77,12 +77,13 @@ public class llistaServeis extends javax.swing.JFrame {
         choiceTrabajador.add(t1.getNom());
         choiceTrabajador.add(t2.getNom());
         choiceTrabajador.add(t3.getNom());
-        Servei s1 = new Servei (t1,"Sabadell - Sevilla",1);
-        Servei s2 = new Servei (t1,"Sevilla - Sabadell",2);
-        Servei s3 = new Servei (t2,"Formentera - Ibiza",3);
-        Servei s4 = new Servei (t2,"Ibiza - Formentera",4);
-        Servei s5 = new Servei (t3,"Barcelona - Paris",5);
-        Servei s6 = new Servei (t3,"Paris - Barcelona",6);
+        Servei s1 = new Servei (1,"Sabadell - Sevilla",t1.getId(),"20/10/2018","20:00","22:00");
+        Servei s2 = new Servei (2,"Formentera - Ibiza",t2.getId(),"20/10/2018","20:00","22:00");
+        Servei s3 = new Servei (3,"Ibiza - Formentera",t2.getId(),"20/10/2018","20:00","22:00");
+        Servei s4 = new Servei (4,"Barcelona - Paris",t3.getId(),"20/10/2018","20:00","22:00");
+        Servei s5 = new Servei (5,"Sabadell - Sevilla",t3.getId(),"20/10/2018","20:00","22:00");
+        Servei s6 = new Servei (6,"Paris - Barcelona",t1.getId(),"22/10/2018","20:00","22:00");
+
         Servei.setLlistaServeis(s1); Servei.setLlistaServeis(s2);Servei.setLlistaServeis(s3);Servei.setLlistaServeis(s4);Servei.setLlistaServeis(s5);Servei.setLlistaServeis(s6);
         
         Reserva r1 = new Reserva (1,1,"LOC12345","13/02/2018","Alberto","Garcia","Cortes","alberto@gmail.com","QR12345","47169530D","0");
