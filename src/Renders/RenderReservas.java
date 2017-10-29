@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interficies;
+package Renders;
 
 import java.awt.Component;
 import javax.swing.ImageIcon;
@@ -24,7 +24,20 @@ public class RenderReservas extends JLabel implements ListCellRenderer {
             boolean isSelected, boolean cellHasFocus) {
         
         JLabel renderer = (JLabel) e;
-        renderer.setBackground(isSelected ? jlist.getSelectionBackground()  : jlist.getBackground());
+        String valor = e.toString();
+        setText(valor);
+        if (valor.contains("No Realitzat")){
+            renderer.setIcon(logoNoCheck);
+        } else renderer.setIcon(logoCheck);
+        if (isSelected){
+            renderer.setBackground(jlist.getSelectionBackground());
+            renderer.setForeground(jlist.getSelectionForeground());
+        } else {
+            renderer.setBackground(jlist.getBackground());
+            renderer.setForeground(jlist.getForeground());
+        }
+        renderer.setOpaque(true);
+        //renderer.setFont(jlist.getFont());
         return renderer;
       
         /*
