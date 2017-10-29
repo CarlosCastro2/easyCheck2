@@ -6,7 +6,8 @@
 package clases;
 
 import java.util.ArrayList;
-
+import javax.swing.JLabel;
+import javax.swing.SwingConstants; 
 /**
  *
  * @author Carlos
@@ -134,12 +135,15 @@ public class Reserva {
     public static void setReservas(Reserva reserva) {
         Reserva.reservas.add(reserva);
     }
-    public String toString(){
+    public JLabel getLabel(){
+        JLabel label = new JLabel("<html> <b>"+nomClient+" "+cognomClient+" "+cognomClient2+"</b><br> Dni: "+dniClient+" "+emailClient+" "+"<br> QR: "+QRClient+" "+checkIn(checkIn)+"</html>", SwingConstants.LEFT);
+        return label;
         //Integer id, Integer idServei, String localitzador, String dataServei, String nomClient, String cognomClient,String cognomClient2,String emailClient, String QRClient, String dniClient, String checkIn) {
-        return nomClient+" "+cognomClient+" "+cognomClient2+" Dni: "+dniClient+" "+emailClient+" "+"QR: "+QRClient+" "+checkIn(checkIn);
+       // return nomClient+" "+cognomClient+" "+cognomClient2+" Dni: "+dniClient+" "+emailClient+" "+"QR: "+QRClient+" "+checkIn(checkIn);
     }
     public String checkIn(String checkIn){
         if (checkIn.equalsIgnoreCase("0")) return "Check-In: No Realitzat";
         else return "Check-In: Realitzat";
     }
+    
 }

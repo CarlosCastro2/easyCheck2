@@ -8,6 +8,7 @@ package interficies;
 import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
@@ -21,10 +22,12 @@ public class RenderReservas extends JLabel implements ListCellRenderer {
     @Override
     public Component getListCellRendererComponent(JList jlist, Object e, int i,
             boolean isSelected, boolean cellHasFocus) {
-      /*  Component component = (Component) e;
-       component.setForeground (Color.white); */
-
         
+        JLabel renderer = (JLabel) e;
+        renderer.setBackground(isSelected ? jlist.getSelectionBackground()  : jlist.getBackground());
+        return renderer;
+      
+        /*
         String valor = e.toString();
         setText(valor);
         if (valor.contains("No Realitzat")){
@@ -39,7 +42,7 @@ public class RenderReservas extends JLabel implements ListCellRenderer {
         }
         setOpaque(true);
         setFont(jlist.getFont());
-        return this;
+        return this; */
         
     }
     

@@ -10,6 +10,11 @@ import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import javax.swing.JFrame;
 /**
  *
  * @author Carlos
@@ -22,14 +27,16 @@ public class llistaReserves extends javax.swing.JFrame {
      * Creates new form llistaReserves
      */
     public llistaReserves(Integer servei) {
+        
         initComponents();
         setLocationRelativeTo(null);
         this.servei = servei;
+
         modeloLista = new DefaultListModel();
         jListaReservas.setModel(modeloLista);
         jListaReservas.setCellRenderer(new RenderReservas());
         jListaReservas.setSelectionBackground(Color.ORANGE);
-        
+        jListaReservas.setFont(new Font("TimesRoman", Font.BOLD, 16));
         jLabel2.setText(servei.toString());
         ArrayList<Reserva> listaReservas = Reserva.getReservas();
         Iterator it = listaReservas.iterator();
@@ -37,7 +44,7 @@ public class llistaReserves extends javax.swing.JFrame {
         while(it.hasNext()){
             Reserva reserva = (Reserva) it.next();
             if (reserva.getIdServei()== servei){
-                modeloLista.addElement(reserva.toString());  
+                modeloLista.addElement(reserva.getLabel());  
             } 
         } 
     }
