@@ -6,6 +6,9 @@
 package clases;
 
 import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.util.Iterator;
 
 /**
  *
@@ -81,5 +84,23 @@ public class Servei {
     public String toString(){
         return idServei+" "+servei+" "+dataServei+" "+horaInici+" "+horaFi+" "+id_treballador;
     }
-
+     public JLabel getLabel(){
+        JLabel label = new JLabel("<html><FONT FACE=\"impact\" SIZE=6 COLOR=\"red\">"+servei+"</FONT> <br> "
+                + "<FONT FACE=\"courier\" SIZE=4><b>Data:</b> "+dataServei+" "+"<br> "
+                        + "<b>Hora Inici:</b> "+horaInici+" <b>Hora Fi:</b> "+horaFi+"<hr style=\"border:2px;\"></FONT></html>", SwingConstants.LEFT);
+        return label;
+        //Integer id, Integer idServei, String localitzador, String dataServei, String nomClient, String cognomClient,String cognomClient2,String emailClient, String QRClient, String dniClient, String checkIn) {
+       // return nomClient+" "+cognomClient+" "+cognomClient2+" Dni: "+dniClient+" "+emailClient+" "+"QR: "+QRClient+" "+checkIn(checkIn);
+    }
+    public static ArrayList<Servei> getServeisTreballador (int treballador){
+        ArrayList<Servei> serveis = new ArrayList();
+        Iterator<Servei> it = llistaServeis.iterator();
+        while(it.hasNext()){
+            Servei s = it.next();
+            if (s.id_treballador==treballador){
+                serveis.add(s);
+            }
+        }
+        return serveis;
+    }
 }

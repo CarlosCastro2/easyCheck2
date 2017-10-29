@@ -5,7 +5,9 @@
  */
 package clases;
 
+import static clases.Servei.llistaServeis;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -105,5 +107,15 @@ public class Treballador {
     public String toString(){
 return nom+" "+cognom1+" "+cognom2;}
 
-   
+   public static Integer obtenirTreballador (String nom){
+        Integer idTreballador=0;
+        Iterator<Treballador> it = treballadors.iterator();
+        while(it.hasNext()){
+            Treballador t = it.next();
+            if (t.nom.equalsIgnoreCase(nom)){
+                idTreballador = t.getId();
+            }
+        }
+        return idTreballador;
+   }
 }

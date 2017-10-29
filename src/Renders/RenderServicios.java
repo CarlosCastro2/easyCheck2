@@ -8,28 +8,22 @@ package Renders;
 import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+
 /**
  *
  * @author Carlos
  */
-public class RenderReservas extends JLabel implements ListCellRenderer {
-    static ImageIcon logoCheck = new ImageIcon("check.png");
-    static ImageIcon logoNoCheck = new ImageIcon("noCheck.png");
+public class RenderServicios extends JLabel implements ListCellRenderer {
+
     @Override
     public Component getListCellRendererComponent(JList jlist, Object e, int i,
             boolean isSelected, boolean cellHasFocus) {
         
         JLabel renderer = (JLabel) e;
         String valor = e.toString();
-        if (valor.contains("No Realitzat")){
-            renderer.setIcon(logoNoCheck);
-        } else {
-            renderer.setIcon(logoCheck);
-        }
+        setText(valor);
         if (isSelected){
             renderer.setBackground(jlist.getSelectionBackground());
             renderer.setForeground(jlist.getSelectionForeground());
@@ -39,6 +33,6 @@ public class RenderReservas extends JLabel implements ListCellRenderer {
         }
         renderer.setOpaque(true);
         return renderer;
+
     }
-    
 }

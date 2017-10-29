@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package interficies;
+import Renders.RenderServicios;
 import java.awt.event.ItemEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,6 +19,7 @@ import clases.Treballador;
 import clases.Reserva;
 import clases.Servei;
 import java.awt.Color;
+import javax.swing.ListModel;
 /**
  *
  * @author Carlos
@@ -25,6 +28,8 @@ public class llistaServeis extends javax.swing.JFrame {
     HashMap<String, String> serviciosMap = new HashMap<String, String>();
     ArrayList <String> serviciosList = new ArrayList();
     DefaultListModel modeloLista;
+    Integer[] idServei = new Integer [1000];
+    Integer treballadors = 0;
     /**
      * Creates new form NewJFrame
      */
@@ -34,18 +39,23 @@ public class llistaServeis extends javax.swing.JFrame {
         
         modeloLista = new DefaultListModel();
         jlista.setModel(modeloLista);
+        jlista.setCellRenderer(new RenderServicios());
         jlista.setSelectionBackground(Color.ORANGE);
         jlista.addListSelectionListener(new ListSelectionListener() {
 		@Override
 		public void valueChanged(ListSelectionEvent arg0) {
+                    /*
                     String servei = ((JList)arg0.getSource()).getSelectedValue().toString();
+
                     String[] splited = servei.split("\\s+");
-                    int idServei = Integer.parseInt(splited[0]);
-                    System.out.println(servei);
-                    llistaReserves llistaReserves = new llistaReserves(idServei);
+                    int idServei = Integer.parseInt(splited[0]); 
+                    System.out.println(servei); */
+                    Integer seleccionat = ((JList)arg0.getSource()).getSelectedIndex();
+                    System.out.println(seleccionat);
+                    llistaReserves llistaReserves = new llistaReserves(idServei[seleccionat]);
                     llistaReserves.setVisible(true);
                     setLocationRelativeTo(null);
-                    JOptionPane.showMessageDialog(null,"Servicio seleccionado: "+servei);
+                    JOptionPane.showMessageDialog(null,"Servicio seleccionado: "+idServei[seleccionat]);
 		}	
 	});
 
@@ -53,19 +63,42 @@ public class llistaServeis extends javax.swing.JFrame {
             @Override
             public void itemStateChanged(ItemEvent ie) {     
                 ArrayList<Servei> listaServeis = new ArrayList();
-                listaServeis = Servei.getLlistaServeis();
-                Iterator it = listaServeis.iterator();
+                String nomTreballador = (String) ie.getItem();
+                System.out.println(nomTreballador); 
+                // METODO POR SI NO COINCIDE EL ID_TRABAJADOR CON EL ORDEN QUE MUESTRA EN EL CHOICE TRABAJADOR
+                Integer treballadorSeleccionat = Treballador.obtenirTreballador(nomTreballador);
+                System.out.println(treballadorSeleccionat);
+                if (choiceTrabajador.getSelectedIndex()!=0){
+                    listaServeis = Servei.getServeisTreballador(treballadorSeleccionat);
+                    Iterator it = listaServeis.iterator();
+                    modeloLista.clear();
+                    int contador = 0;
+                    while(it.hasNext()){
+                        listaServeis.size();
+                        Servei servei = (Servei) it.next();
+                        if (choiceTrabajador.getSelectedIndex()== servei.getId_Treballador()){
+                            idServei[contador] = servei.getIdServei();
+                            modeloLista.addElement(servei.getLabel());
+                            treballadors = servei.getId_Treballador();
+                        } 
+                        contador++;
+                    } 
+                } else {
+                    listaServeis = Servei.getLlistaServeis();
+                    Iterator it = listaServeis.iterator();
+                    modeloLista.clear();
+                    int contador = 0;
+                    while(it.hasNext()){
+                        listaServeis.size();
+                        Servei servei = (Servei) it.next();
+                        idServei[contador] = servei.getIdServei();
+                        modeloLista.addElement(servei.getLabel());
+                        contador++;
+                    } 
+                }
+
                 //  choiceTrabajador.getItem(choiceTrabajador.getSelectedIndex());
                 //  JOptionPane.showMessageDialog(null,"Trabajador seleccionado: "+choiceTrabajador.getItem(choiceTrabajador.getSelectedIndex()));
-                modeloLista.clear();
-                while(it.hasNext()){
-                    Servei servei = (Servei) it.next();
-                    if (choiceTrabajador.getSelectedIndex()== servei.getId_Treballador()){
-                        modeloLista.addElement(servei.toString());
-                    } else if (choiceTrabajador.getSelectedItem().equalsIgnoreCase("Tots")) {
-                        modeloLista.addElement(servei.toString());
-                    }   
-                } 
             }
         });
     }
