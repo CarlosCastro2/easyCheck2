@@ -135,6 +135,11 @@ public class Reserva {
         Reserva.reservas.add(reserva);
     }
     public String toString(){
-        return nomClient+" "+cognomClient+" Dni: "+dniClient;
+        //Integer id, Integer idServei, String localitzador, String dataServei, String nomClient, String cognomClient,String cognomClient2,String emailClient, String QRClient, String dniClient, String checkIn) {
+        return nomClient+" "+cognomClient+" "+cognomClient2+" Dni: "+dniClient+" "+emailClient+" "+"QR: "+QRClient+" "+checkIn(checkIn);
+    }
+    public String checkIn(String checkIn){
+        if (checkIn.equalsIgnoreCase("0")) return "Check-In: No Realitzat";
+        else return "Check-In: Realitzat";
     }
 }

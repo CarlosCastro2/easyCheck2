@@ -22,6 +22,9 @@ public class Servei {
         this.id_treballador = id_treballador;
         this.servei = servei;
         this.idServei = idServei;
+        this.horaInici = horaInici;
+        this.horaFi = horaFi;
+        this.dataServei = dataServei;
     }
     
     public Integer getIdServei(){
@@ -53,9 +56,7 @@ public class Servei {
     public static void setLlistaServeis(Servei servei) {
         llistaServeis.add(servei);
     }
-    public String toString(){
-        return idServei+" "+servei;
-    }
+    
     public String getDataServei() {
         return dataServei;
     }
@@ -77,4 +78,8 @@ public class Servei {
     public void setHoraFi(String horaFi) {
         this.horaFi = horaFi;
     }
+    public String toString(){
+        return idServei+" "+servei+" "+dataServei+" "+horaInici+" "+horaFi+" "+id_treballador;
+    }
+
 }

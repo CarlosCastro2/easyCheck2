@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionListener;
 import clases.Treballador;
 import clases.Reserva;
 import clases.Servei;
+import java.awt.Color;
 /**
  *
  * @author Carlos
@@ -33,6 +34,7 @@ public class llistaServeis extends javax.swing.JFrame {
         
         modeloLista = new DefaultListModel();
         jlista.setModel(modeloLista);
+        jlista.setSelectionBackground(Color.ORANGE);
         jlista.addListSelectionListener(new ListSelectionListener() {
 		@Override
 		public void valueChanged(ListSelectionEvent arg0) {
