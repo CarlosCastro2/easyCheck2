@@ -8,6 +8,7 @@ package interficies;
 import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 /**
@@ -19,12 +20,25 @@ public class RenderReservas extends JLabel implements ListCellRenderer {
     static ImageIcon logoNoCheck = new ImageIcon("noCheck.png");
     @Override
     public Component getListCellRendererComponent(JList jlist, Object e, int i,
-            boolean bln, boolean bln1) {
+            boolean isSelected, boolean cellHasFocus) {
+      /*  Component component = (Component) e;
+       component.setForeground (Color.white); */
+
+        
         String valor = e.toString();
         setText(valor);
         if (valor.contains("No Realitzat")){
             setIcon(logoNoCheck);
         } else setIcon(logoCheck);
+        if (isSelected){
+            setBackground(jlist.getSelectionBackground());
+            setForeground(jlist.getSelectionForeground());
+        } else {
+            setBackground(jlist.getBackground());
+            setForeground(jlist.getForeground());
+        }
+        setOpaque(true);
+        setFont(jlist.getFont());
         return this;
         
     }
