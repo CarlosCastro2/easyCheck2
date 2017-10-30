@@ -125,5 +125,17 @@ public class Treballador {
     public String toString() {
         return "Treballador: " + nom + "  " + cognom1 + "  " + cognom2;
     }
+    
+    public static void exemples() {
+       Treballador t1 = new Treballador("Maria", "Puig", "Cadafalch", "login_m", "xxx", "1", "15653131A");
+       Treballador  t2 = new Treballador("Pere", "Maria", "Fernan", "login_p", "xxx", "0", "5317731A");
+         Treballador t3 = new Treballador("Eric", "Garcia", "Tinent", "login_e", "xxx", "1", "122253131A");
+         Treballador t4 = new Treballador("Antonia", "Montseny", "Puig", "login_a", "xxx", "1", "99953131A");
+        Treballador.setTreballadors(t1);
+        Treballador.setTreballadors(t2);
+        Treballador.setTreballadors(t3);
+        Treballador.setTreballadors(t4);
+        
+    }
 
 }

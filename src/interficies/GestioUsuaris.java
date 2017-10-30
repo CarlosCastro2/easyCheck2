@@ -25,22 +25,15 @@ public class GestioUsuaris extends javax.swing.JFrame {
 
     DefaultListModel model;
     Treballador t1;
-    private final Treballador t3;
-    private final Treballador t4;
+    private Treballador t3;
+    private Treballador t4;
     Treballador t2;
 
     /**
      * Creates new form GestioUsuaris
      */
     public GestioUsuaris() {
-        t1 = new Treballador("Maria", "Puig", "Cadafalch", "login_m", "xxx", "1", "15653131A");
-        t2 = new Treballador("Pere", "Maria", "Fernan", "login_p", "xxx", "0", "5317731A");
-        t3 = new Treballador("Eric", "Garcia", "Tinent", "login_e", "xxx", "1", "122253131A");
-        t4 = new Treballador("Antonia", "Montseny", "Puig", "login_a", "xxx", "1", "99953131A");
-        Treballador.setTreballadors(t1);
-        Treballador.setTreballadors(t2);
-        Treballador.setTreballadors(t3);
-        Treballador.setTreballadors(t4);
+        
 
         initComponents();
         this.setLocationRelativeTo(null);
@@ -48,7 +41,8 @@ public class GestioUsuaris extends javax.swing.JFrame {
         model = new DefaultListModel();
         // _id.setVisible(false);
         jListTreballadors.setModel(model);
-        exemples();
+      
+       InsereixTreballador();
 
     }
 
@@ -299,8 +293,8 @@ public class GestioUsuaris extends javax.swing.JFrame {
 
         Treballador tr1 = new Treballador();
         tr1 = RecullirDadesFormulari();
-
         model.addElement(tr1);
+        Treballador.setTreballadors(tr1);
 
         //  jListTreballadors.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 //       jListTreballadors.addListSelectionListener(new ListSelectionListener() {
@@ -426,7 +420,8 @@ public class GestioUsuaris extends javax.swing.JFrame {
         // _id.setText("");
     }
 
-    public void exemples() {
+    public void InsereixTreballador() {
+      Treballador.exemples();
         for (int i=0;i<Treballador.getSize();i++){
             Treballador t= Treballador.getTreballadors().get(i);
             model.addElement(t);
