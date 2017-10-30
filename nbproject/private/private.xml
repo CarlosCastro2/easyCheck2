@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Maria/Documents/Git/EasyCheckDesktop-master/src/interficies/llistaServeis.java</file>
-            <file>file:/C:/Users/Maria/Documents/Git/EasyCheckDesktop-master/src/interficies/GestioUsuaris.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/EasyCheckDesktop/src/clases/Treballador.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/EasyCheckDesktop/src/clases/Servei.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/EasyCheckDesktop/src/interficies/llistaServeis.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/EasyCheckDesktop/src/interficies/llistaReserves.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/EasyCheckDesktop/src/clases/Reserva.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/EasyCheckDesktop/src/Renders/RenderReservas.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/EasyCheckDesktop/src/Renders/RenderServicios.java</file>
         </group>
     </open-files>
 </project-private>

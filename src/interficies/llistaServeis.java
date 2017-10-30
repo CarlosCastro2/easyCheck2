@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ArrayList;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.ListSelectionModel;
 import clases.Treballador;
 import clases.Reserva;
 import clases.Servei;
@@ -44,18 +45,17 @@ public class llistaServeis extends javax.swing.JFrame {
         jlista.addListSelectionListener(new ListSelectionListener() {
 		@Override
 		public void valueChanged(ListSelectionEvent arg0) {
-                    /*
-                    String servei = ((JList)arg0.getSource()).getSelectedValue().toString();
-
-                    String[] splited = servei.split("\\s+");
-                    int idServei = Integer.parseInt(splited[0]); 
-                    System.out.println(servei); */
-                    Integer seleccionat = ((JList)arg0.getSource()).getSelectedIndex();
-                    System.out.println(seleccionat);
-                    llistaReserves llistaReserves = new llistaReserves(idServei[seleccionat]);
-                    llistaReserves.setVisible(true);
-                    setLocationRelativeTo(null);
-                    JOptionPane.showMessageDialog(null,"Servicio seleccionado: "+idServei[seleccionat]);
+                    JList list =(JList)arg0.getSource();
+                    if (list.isSelectionEmpty() || list.getValueIsAdjusting()) {
+                         return;
+                    }
+                        int seleccionat = list.getSelectedIndex();
+                        System.out.println(seleccionat);
+                        llistaReserves llistaReserves = new llistaReserves(idServei[seleccionat]);
+                        llistaReserves.setVisible(true);
+                        setLocationRelativeTo(null);
+                        JOptionPane.showMessageDialog(null,"Servicio seleccionado: "+idServei[seleccionat]);
+                    
 		}	
 	});
 
@@ -68,17 +68,18 @@ public class llistaServeis extends javax.swing.JFrame {
                 // METODO POR SI NO COINCIDE EL ID_TRABAJADOR CON EL ORDEN QUE MUESTRA EN EL CHOICE TRABAJADOR
                 Integer treballadorSeleccionat = Treballador.obtenirTreballador(nomTreballador);
                 System.out.println(treballadorSeleccionat);
+                int contador = 0;
+                modeloLista.clear();
                 if (choiceTrabajador.getSelectedIndex()!=0){
                     listaServeis = Servei.getServeisTreballador(treballadorSeleccionat);
                     Iterator it = listaServeis.iterator();
-                    modeloLista.clear();
-                    int contador = 0;
                     while(it.hasNext()){
                         listaServeis.size();
                         Servei servei = (Servei) it.next();
                         if (choiceTrabajador.getSelectedIndex()== servei.getId_Treballador()){
                             idServei[contador] = servei.getIdServei();
                             modeloLista.addElement(servei.getLabel());
+                            jlista.ensureIndexIsVisible(modeloLista.getSize());
                             treballadors = servei.getId_Treballador();
                         } 
                         contador++;
@@ -86,19 +87,15 @@ public class llistaServeis extends javax.swing.JFrame {
                 } else {
                     listaServeis = Servei.getLlistaServeis();
                     Iterator it = listaServeis.iterator();
-                    modeloLista.clear();
-                    int contador = 0;
                     while(it.hasNext()){
                         listaServeis.size();
                         Servei servei = (Servei) it.next();
                         idServei[contador] = servei.getIdServei();
                         modeloLista.addElement(servei.getLabel());
+                        jlista.ensureIndexIsVisible(modeloLista.getSize());
                         contador++;
                     } 
                 }
-
-                //  choiceTrabajador.getItem(choiceTrabajador.getSelectedIndex());
-                //  JOptionPane.showMessageDialog(null,"Trabajador seleccionado: "+choiceTrabajador.getItem(choiceTrabajador.getSelectedIndex()));
             }
         });
     }
@@ -112,12 +109,12 @@ public class llistaServeis extends javax.swing.JFrame {
         choiceTrabajador.add(t1.getNom());
         choiceTrabajador.add(t2.getNom());
         choiceTrabajador.add(t3.getNom());
-        Servei s1 = new Servei (1,"Sabadell - Sevilla",t1.getId(),"20/10/2018","20:00","22:00");
-        Servei s2 = new Servei (2,"Formentera - Ibiza",t2.getId(),"20/10/2018","20:00","22:00");
-        Servei s3 = new Servei (3,"Ibiza - Formentera",t2.getId(),"20/10/2018","20:00","22:00");
-        Servei s4 = new Servei (4,"Barcelona - Paris",t3.getId(),"20/10/2018","20:00","22:00");
-        Servei s5 = new Servei (5,"Sabadell - Sevilla",t3.getId(),"20/10/2018","20:00","22:00");
-        Servei s6 = new Servei (6,"Paris - Barcelona",t1.getId(),"22/10/2018","20:00","22:00");
+        Servei s1 = new Servei (6,"Sabadell - Sevilla",t1.getId(),"20/10/2018","20:00","22:00");
+        Servei s2 = new Servei (4,"Formentera - Ibiza",t2.getId(),"20/10/2018","20:00","22:00");
+        Servei s3 = new Servei (5,"Ibiza - Formentera",t2.getId(),"20/10/2018","20:00","22:00");
+        Servei s4 = new Servei (3,"Barcelona - Paris",t3.getId(),"20/10/2018","20:00","22:00");
+        Servei s5 = new Servei (1,"Sabadell - Sevilla",t3.getId(),"20/10/2018","20:00","22:00");
+        Servei s6 = new Servei (2,"Paris - Barcelona",t1.getId(),"22/10/2018","20:00","22:00");
 
         Servei.setLlistaServeis(s1); Servei.setLlistaServeis(s2);Servei.setLlistaServeis(s3);Servei.setLlistaServeis(s4);Servei.setLlistaServeis(s5);Servei.setLlistaServeis(s6);
         
