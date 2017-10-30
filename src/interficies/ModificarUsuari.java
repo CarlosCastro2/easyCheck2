@@ -190,6 +190,7 @@ public class ModificarUsuari extends javax.swing.JFrame {
         while(it.hasNext()){
             Treballador t =(Treballador) it.next();
             if (t.getId()==id_treballador){
+                t.setId(id_treballador);
                 t.setNom(sNom);
                 t.setCognom1(sCognom);
                 t.setCognom2(sCognom2);
