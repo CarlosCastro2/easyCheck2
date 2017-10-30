@@ -8,19 +8,23 @@ package clases;
 import static clases.Servei.llistaServeis;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  *
  * @author Maria
  */
 public class Treballador {
-    public String nom,cognom1,cognom2,login,password,esAdmin,dni;
+
+    public String nom, cognom1, cognom2, login, password, esAdmin, dni;
     int _id;
-    static ArrayList<Treballador> treballadors  = new ArrayList();
+    static ArrayList<Treballador> treballadors = new ArrayList();
+
     public Treballador() {
     }
 
-    public Treballador(int _id,String nom, String cognom1, String cognom2, String login, String password, String esAdmin, String dni) {
+    public Treballador(int _id, String nom, String cognom1, String cognom2, String login, String password, String esAdmin, String dni) {
         this.nom = nom;
         this.cognom1 = cognom1;
         this.cognom2 = cognom2;
@@ -28,7 +32,17 @@ public class Treballador {
         this.password = password;
         this.esAdmin = esAdmin;
         this.dni = dni;
-        this._id=_id;
+        this._id = _id;
+    }
+
+    public Treballador(String nom, String cognom1, String cognom2, String login, String password, String esAdmin, String dni) {
+        this.nom = nom;
+        this.cognom1 = cognom1;
+        this.cognom2 = cognom2;
+        this.login = login;
+        this.password = password;
+        this.esAdmin = esAdmin;
+        this.dni = dni;
     }
 
     public int getId() {
@@ -38,7 +52,6 @@ public class Treballador {
     public void setId(int _id) {
         this._id = _id;
     }
-    
 
     public String getNom() {
         return nom;
@@ -103,19 +116,22 @@ public class Treballador {
     public void setDni(String dni) {
         this.dni = dni;
     }
-    @Override
-    public String toString(){
-return nom+" "+cognom1+" "+cognom2;}
 
-   public static Integer obtenirTreballador (String nom){
-        Integer idTreballador=0;
+    @Override
+    public String toString() {
+        return "Treballador: " + nom + "  " + cognom1 + "  " + cognom2;
+    }
+
+    public static Integer obtenirTreballador(String nom) {
+        Integer idTreballador = 0;
         Iterator<Treballador> it = treballadors.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             Treballador t = it.next();
-            if (t.nom.equalsIgnoreCase(nom)){
+            if (t.nom.equalsIgnoreCase(nom)) {
                 idTreballador = t.getId();
             }
         }
         return idTreballador;
-   }
+    }
+
 }

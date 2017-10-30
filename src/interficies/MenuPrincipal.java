@@ -146,7 +146,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
 
-System.exit(0);        // TODO add your handling code here:
+                    System.exit(0);        
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void gestorUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestorUsuariosMouseClicked
