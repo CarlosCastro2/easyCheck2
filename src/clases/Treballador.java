@@ -127,10 +127,10 @@ public class Treballador {
     }
     
     public static void exemples() {
-       Treballador t1 = new Treballador(1,"Maria", "Puig", "Cadafalch", "login_m", "xxx", "1", "15653131A");
-       Treballador  t2 = new Treballador(2,"Pere", "Maria", "Fernan", "login_p", "xxx", "0", "5317731A");
-         Treballador t3 = new Treballador(3,"Eric", "Garcia", "Tinent", "login_e", "xxx", "1", "122253131A");
-         Treballador t4 = new Treballador(4,"Antonia", "Montseny", "Puig", "login_a", "xxx", "1", "99953131A");
+       Treballador t1 = new Treballador(5,"Maria", "Puig", "Cadafalch", "login_m", "xxx", "1", "15653131A");
+       Treballador  t2 = new Treballador(6,"Pere", "Maria", "Fernan", "login_p", "xxx", "0", "5317731A");
+         Treballador t3 = new Treballador(7,"Eric", "Garcia", "Tinent", "login_e", "xxx", "1", "122253131A");
+         Treballador t4 = new Treballador(8,"Antonia", "Montseny", "Puig", "login_a", "xxx", "1", "99953131A");
         Treballador.setTreballadors(t1);
         Treballador.setTreballadors(t2);
         Treballador.setTreballadors(t3);
