@@ -15,6 +15,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +26,7 @@ public class ModificarUsuari extends javax.swing.JFrame {
  GestioUsuaris gestio;
  List <Treballador>treballadors;
  Treballador tr;
+ Integer id_treballador;
     /**
      * Creates new form ModificarUsuari
      */
@@ -55,6 +57,7 @@ public class ModificarUsuari extends javax.swing.JFrame {
              int selection=jList1.getSelectedIndex();
              Treballador t= new Treballador();
              t= (Treballador) model.getElementAt(selection);
+             id_treballador = t.getId();
               nom.setText(t.getNom());
         cognom1.setText(t.getCognom1());
         cognom2.setText(t.getCognom2());
@@ -181,9 +184,32 @@ public class ModificarUsuari extends javax.swing.JFrame {
         String sLogin = login.getText();
         String sPassword = password.getText();
         String sDni = dni.getText();
-        tr=new Treballador(sNom,sCognom,sCognom2,sLogin,sPassword,"1",sDni);
-        model.addElement(tr);
-        treballadors.add(tr);
+        
+        ArrayList <Treballador> treb = Treballador.getTreballadors();
+        Iterator it= treb.iterator();
+        while(it.hasNext()){
+            Treballador t =(Treballador) it.next();
+            if (t.getId()==id_treballador){
+                t.setNom(sNom);
+                t.setCognom1(sCognom);
+                t.setCognom2(sCognom2);
+                t.setLogin(sLogin);
+                t.setPassword(sPassword);
+                t.setDni(sDni);
+               
+                Treballador.setTreballadors(t);
+                Treballador.getTreballadors().remove(0);
+                GestioUsuaris.actualitzaLlista();
+                //tr=new Treballador(sNom,sCognom,sCognom2,sLogin,sPassword,"1",sDni);
+                //Treballador.getTreballadors().add(tr);
+                break;
+            }
+        } 
+         model.addElement(tr);
+        //tr=new Treballador(sNom,sCognom,sCognom2,sLogin,sPassword,"1",sDni);
+       // model.addElement(tr);
+       // treballadors.add(tr);
+        //Treballador.setTreballadors(tr);
     }//GEN-LAST:event_btnModificaActionPerformed
 
     /**

@@ -289,7 +289,8 @@ public class GestioUsuaris extends javax.swing.JFrame {
             actualitzaLlista();
         }
     }//GEN-LAST:event_btnEsborraActionPerformed
-    public void actualitzaLlista() {
+    public static void actualitzaLlista() {
+        model.clear();
         for (int i = 0; i < Treballador.getSize(); i++) {
             model.addElement(Treballador.getTreballadors().get(i));
         }
