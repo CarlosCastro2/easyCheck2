@@ -37,7 +37,6 @@ public class llistaServeis extends javax.swing.JFrame {
     public llistaServeis() {
         initComponents();
         añadirObjetosAClases();
-        
         modeloLista = new DefaultListModel();
         jlista.setModel(modeloLista);
         jlista.setCellRenderer(new RenderServicios());
@@ -58,46 +57,54 @@ public class llistaServeis extends javax.swing.JFrame {
                     
 		}	
 	});
+        llistaTots();
 
         choiceTrabajador.addItemListener(new java.awt.event.ItemListener(){
             @Override
             public void itemStateChanged(ItemEvent ie) {     
-                ArrayList<Servei> listaServeis = new ArrayList();
                 String nomTreballador = (String) ie.getItem();
                 System.out.println(nomTreballador); 
                 // METODO POR SI NO COINCIDE EL ID_TRABAJADOR CON EL ORDEN QUE MUESTRA EN EL CHOICE TRABAJADOR
                 Integer treballadorSeleccionat = Treballador.obtenirTreballador(nomTreballador);
                 System.out.println(treballadorSeleccionat);
-                int contador = 0;
-                modeloLista.clear();
                 if (choiceTrabajador.getSelectedIndex()!=0){
-                    listaServeis = Servei.getServeisTreballador(treballadorSeleccionat);
-                    Iterator it = listaServeis.iterator();
-                    while(it.hasNext()){
-                        listaServeis.size();
-                        Servei servei = (Servei) it.next();
-                        if (choiceTrabajador.getSelectedIndex()== servei.getId_Treballador()){
-                            idServei[contador] = servei.getIdServei();
-                            modeloLista.addElement(servei.getLabel());
-                            jlista.ensureIndexIsVisible(modeloLista.getSize());
-                            treballadors = servei.getId_Treballador();
-                        } 
-                        contador++;
-                    } 
+                    llistaTreballador(treballadorSeleccionat);
                 } else {
-                    listaServeis = Servei.getLlistaServeis();
-                    Iterator it = listaServeis.iterator();
-                    while(it.hasNext()){
-                        listaServeis.size();
-                        Servei servei = (Servei) it.next();
-                        idServei[contador] = servei.getIdServei();
-                        modeloLista.addElement(servei.getLabel());
-                        jlista.ensureIndexIsVisible(modeloLista.getSize());
-                        contador++;
-                    } 
+                    llistaTots(); 
                 }
             }
         });
+    }
+    public void llistaTots(){
+        ArrayList<Servei>listaServeis = Servei.getLlistaServeis();
+        int contador=0;
+        Iterator it = listaServeis.iterator();
+        modeloLista.clear();
+        while(it.hasNext()){
+            listaServeis.size();
+            Servei servei = (Servei) it.next();
+            idServei[contador] = servei.getIdServei();
+            modeloLista.addElement(servei.getLabel());
+            jlista.ensureIndexIsVisible(modeloLista.getSize());
+            contador++;
+        }
+    }
+    public void llistaTreballador(int treballadorSeleccionat){
+        int contador = 0;
+        ArrayList<Servei>listaServeis = Servei.getServeisTreballador(treballadorSeleccionat);
+        Iterator it = listaServeis.iterator();
+        modeloLista.clear();
+        while(it.hasNext()){
+            listaServeis.size();
+            Servei servei = (Servei) it.next();
+            if (choiceTrabajador.getSelectedIndex()== servei.getId_Treballador()){
+                idServei[contador] = servei.getIdServei();
+                modeloLista.addElement(servei.getLabel());
+                jlista.ensureIndexIsVisible(modeloLista.getSize());
+                treballadors = servei.getId_Treballador();
+            } 
+            contador++;
+        } 
     }
     public void añadirObjetosAClases(){
         Treballador t1= new Treballador (1,"Carlos","Castro","Cañabate","user","password","0","47169530A");
@@ -124,18 +131,7 @@ public class llistaServeis extends javax.swing.JFrame {
         Reserva.setReservas(r1);Reserva.setReservas(r2);Reserva.setReservas(r3);
     }
 
-    public void agregarValores() {
-        String valor = textoCampo.getText();
-        modeloLista.addElement(valor);
-    }
     
-    public void quitarValores(){
-        int respuesta = JOptionPane.showConfirmDialog(null,"Realmente desea eliminar este registro?");
-        if (respuesta==0){
-            int pos = jlista.getSelectedIndex();
-            modeloLista.remove(pos);
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -148,10 +144,6 @@ public class llistaServeis extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jlista = new javax.swing.JList<>();
-        botonAgregar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        textoCampo = new javax.swing.JTextField();
-        botonQuitar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         choiceTrabajador = new java.awt.Choice();
         jLabel3 = new javax.swing.JLabel();
@@ -160,28 +152,6 @@ public class llistaServeis extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setViewportView(jlista);
-
-        botonAgregar.setText("Agregar");
-        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgregarActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Valor");
-
-        textoCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCampoActionPerformed(evt);
-            }
-        });
-
-        botonQuitar.setText("Quitar");
-        botonQuitar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonQuitarActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Treballador");
 
@@ -205,20 +175,12 @@ public class llistaServeis extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jButton1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(choiceTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textoCampo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botonAgregar)
-                                .addGap(26, 26, 26)
-                                .addComponent(botonQuitar)))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -226,14 +188,8 @@ public class llistaServeis extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(textoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAgregar)
-                    .addComponent(botonQuitar))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -245,20 +201,6 @@ public class llistaServeis extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
-        agregarValores();
-    }//GEN-LAST:event_botonAgregarActionPerformed
-
-    private void textoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textoCampoActionPerformed
-
-    private void botonQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQuitarActionPerformed
-        // TODO add your handling code here:
-        quitarValores();
-    }//GEN-LAST:event_botonQuitarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -302,15 +244,11 @@ public class llistaServeis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAgregar;
-    private javax.swing.JButton botonQuitar;
     private java.awt.Choice choiceTrabajador;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> jlista;
-    private javax.swing.JTextField textoCampo;
     // End of variables declaration//GEN-END:variables
 }
