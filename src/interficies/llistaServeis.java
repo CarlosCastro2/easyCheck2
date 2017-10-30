@@ -65,7 +65,7 @@ public class llistaServeis extends javax.swing.JFrame {
                 String nomTreballador = (String) ie.getItem();
                 System.out.println(nomTreballador); 
                 // METODO POR SI NO COINCIDE EL ID_TRABAJADOR CON EL ORDEN QUE MUESTRA EN EL CHOICE TRABAJADOR
-                Integer treballadorSeleccionat = Treballador.obtenirTreballador(nomTreballador);
+                Integer treballadorSeleccionat = obtenirTreballador(nomTreballador);
                 System.out.println(treballadorSeleccionat);
                 if (choiceTrabajador.getSelectedIndex()!=0){
                     llistaTreballador(treballadorSeleccionat);
@@ -74,6 +74,18 @@ public class llistaServeis extends javax.swing.JFrame {
                 }
             }
         });
+    }
+    public  Integer obtenirTreballador(String nom) {
+        ArrayList<Treballador> treballadors = Treballador.getTreballadors();
+        Integer idTreballador = 0;
+        Iterator<Treballador> it = treballadors.iterator();
+        while (it.hasNext()) {
+            Treballador t = it.next();
+            if (t.nom.equalsIgnoreCase(nom)) {
+                idTreballador = t.getId();
+            }
+        }
+        return idTreballador;
     }
     public Boolean reservesServei (int servei){
         ArrayList<Reserva> reservas = Reserva.getReservas();
