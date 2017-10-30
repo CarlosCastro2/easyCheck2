@@ -65,6 +65,10 @@ public class Treballador {
         Treballador.treballadors.add(treballador);
     }
 
+    public static int getSize() {
+        return treballadors.size();
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
     }

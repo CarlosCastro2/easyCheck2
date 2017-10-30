@@ -37,7 +37,10 @@ public class GestioUsuaris extends javax.swing.JFrame {
         t2 = new Treballador("Pere", "Maria", "Fernan", "login_p", "xxx", "0", "5317731A");
         t3 = new Treballador("Eric", "Garcia", "Tinent", "login_e", "xxx", "1", "122253131A");
         t4 = new Treballador("Antonia", "Montseny", "Puig", "login_a", "xxx", "1", "99953131A");
-        Treballador.setTreballadors(t1);Treballador.setTreballadors(t2);Treballador.setTreballadors(t3);Treballador.setTreballadors(t4);
+        Treballador.setTreballadors(t1);
+        Treballador.setTreballadors(t2);
+        Treballador.setTreballadors(t3);
+        Treballador.setTreballadors(t4);
 
         initComponents();
         this.setLocationRelativeTo(null);
@@ -46,6 +49,7 @@ public class GestioUsuaris extends javax.swing.JFrame {
         // _id.setVisible(false);
         jListTreballadors.setModel(model);
         exemples();
+
     }
 
     /**
@@ -421,9 +425,11 @@ public class GestioUsuaris extends javax.swing.JFrame {
         esAdmin.setState(false);
         // _id.setText("");
     }
-public void exemples(){
-model.addElement(t1);
-        model.addElement(t2);
-        model.addElement(t3);
-        model.addElement(t4);}
+
+    public void exemples() {
+        for (int i=0;i<Treballador.getSize();i++){
+            Treballador t= Treballador.getTreballadors().get(i);
+            model.addElement(t);
+        }
+    }
 }
