@@ -6,6 +6,7 @@
 package interficies;
 import Renders.RenderReservas;
 import clases.Reserva;
+import clases.Servei;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JFrame;
+import java.util.Iterator;
 /**
  *
  * @author Carlos
@@ -37,7 +39,7 @@ public class llistaReserves extends javax.swing.JFrame {
         jListaReservas.setModel(modeloLista);
         jListaReservas.setCellRenderer(new RenderReservas());
         jListaReservas.setSelectionBackground(Color.ORANGE);
-        jLabel2.setText(servei.toString());
+        jLabel2.setText(obtenirNomServei());
         ArrayList<Reserva> listaReservas = Reserva.getReservas();
         Iterator it = listaReservas.iterator();
         modeloLista.clear();
@@ -48,7 +50,17 @@ public class llistaReserves extends javax.swing.JFrame {
             } 
         } 
     }
-
+    public String obtenirNomServei(){
+        ArrayList<Servei> llistaServeis = Servei.getLlistaServeis();
+        Iterator<Servei> it = llistaServeis.iterator();
+        while(it.hasNext()){
+            Servei s = it.next();
+            if (s.getIdServei()==servei){
+                return s.getServei();
+            }
+        }
+        return null;
+    }
     public static Integer getServei() {
         return servei;
     }

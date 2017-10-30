@@ -48,13 +48,12 @@ public class llistaServeis extends javax.swing.JFrame {
                     if (list.isSelectionEmpty() || list.getValueIsAdjusting()) {
                          return;
                     }
-                        int seleccionat = list.getSelectedIndex();
-                        System.out.println(seleccionat);
-                        llistaReserves llistaReserves = new llistaReserves(idServei[seleccionat]);
-                        llistaReserves.setVisible(true);
-                        setLocationRelativeTo(null);
-                        JOptionPane.showMessageDialog(null,"Servicio seleccionado: "+idServei[seleccionat]);
-                    
+                    int seleccionat = list.getSelectedIndex();
+                    System.out.println(seleccionat);
+                    llistaReserves llistaReserves = new llistaReserves(idServei[seleccionat]);
+                    llistaReserves.setVisible(true);
+                    setLocationRelativeTo(null);
+                    //JOptionPane.showMessageDialog(null,"Servicio seleccionado: "+idServei[seleccionat]);
 		}	
 	});
         llistaTots();
