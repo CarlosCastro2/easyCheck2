@@ -57,6 +57,7 @@ public class ModificarUsuari extends javax.swing.JFrame {
              int selection=jList1.getSelectedIndex();
              Treballador t= new Treballador();
              t= (Treballador) model.getElementAt(selection);
+               System.out.println(t.getId());
              id_treballador = t.getId();
               nom.setText(t.getNom());
         cognom1.setText(t.getCognom1());
@@ -187,8 +188,11 @@ public class ModificarUsuari extends javax.swing.JFrame {
         
         ArrayList <Treballador> treb = Treballador.getTreballadors();
         Iterator it= treb.iterator();
+        int contador = 1;
+        System.out.println(id_treballador);
         while(it.hasNext()){
             Treballador t =(Treballador) it.next();
+            System.out.println(t.getId());
             if (t.getId()==id_treballador){
                 t.setId(id_treballador);
                 t.setNom(sNom);
@@ -197,14 +201,15 @@ public class ModificarUsuari extends javax.swing.JFrame {
                 t.setLogin(sLogin);
                 t.setPassword(sPassword);
                 t.setDni(sDni);
-               
+                Treballador.getTreballadors().remove(t);
                 Treballador.setTreballadors(t);
-                Treballador.getTreballadors().remove(0);
+               
                 GestioUsuaris.actualitzaLlista();
                 //tr=new Treballador(sNom,sCognom,sCognom2,sLogin,sPassword,"1",sDni);
                 //Treballador.getTreballadors().add(tr);
                 break;
             }
+            contador++;
         } 
          model.addElement(tr);
         //tr=new Treballador(sNom,sCognom,sCognom2,sLogin,sPassword,"1",sDni);
