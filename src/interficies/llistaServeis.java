@@ -97,7 +97,7 @@ public class llistaServeis extends javax.swing.JFrame {
         while(it.hasNext()){
             listaServeis.size();
             Servei servei = (Servei) it.next();
-            if (choiceTrabajador.getSelectedIndex()== servei.getId_Treballador()){
+            if (treballadorSeleccionat== servei.getId_Treballador()){
                 idServei[contador] = servei.getIdServei();
                 modeloLista.addElement(servei.getLabel());
                 jlista.ensureIndexIsVisible(modeloLista.getSize());
@@ -107,9 +107,9 @@ public class llistaServeis extends javax.swing.JFrame {
         } 
     }
     public void añadirObjetosAClases(){
-        Treballador t1= new Treballador (1,"Carlos","Castro","Cañabate","user","password","0","47169530A");
-        Treballador t2= new Treballador (2,"Toni","Torres","Marí","user","password","0","47169530B");
-        Treballador t3= new Treballador (3,"Maria","Ortega","Cobos","user","password","0","47169530C");
+        Treballador t1= new Treballador (2,"Carlos","Castro","Cañabate","user","password","0","47169530A");
+        Treballador t2= new Treballador (3,"Toni","Torres","Marí","user","password","0","47169530B");
+        Treballador t3= new Treballador (1,"Maria","Ortega","Cobos","user","password","0","47169530C");
         Treballador.setTreballadors(t1);Treballador.setTreballadors(t2);Treballador.setTreballadors(t3);
 
         choiceTrabajador.add("Tots");
