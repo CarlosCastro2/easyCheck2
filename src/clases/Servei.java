@@ -110,7 +110,9 @@ public class Servei {
             Treballador t = it.next();
             if (t._id==treballador && t.esAdmin.equalsIgnoreCase("1")){
                 return "<b>Administrador:</b> "+t.nom+" "+t.cognom1+" "+t.cognom2;
-            } else return "<b>Treballador:</b> "+t.nom+" "+t.cognom1+" "+t.cognom2;
+            } else if(t._id==treballador && t.esAdmin.equalsIgnoreCase("0")){
+                return "<b>Treballador:</b> "+t.nom+" "+t.cognom1+" "+t.cognom2;
+            }
         }
         return null;
     }
