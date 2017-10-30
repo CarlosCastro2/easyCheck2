@@ -136,9 +136,13 @@ public class llistaServeis extends javax.swing.JFrame {
         Treballador.setTreballadors(t1);Treballador.setTreballadors(t2);Treballador.setTreballadors(t3);
 
         choiceTrabajador.add("Tots");
-        choiceTrabajador.add(t1.getNom());
-        choiceTrabajador.add(t2.getNom());
-        choiceTrabajador.add(t3.getNom());
+        ArrayList<Treballador> treballadors = Treballador.getTreballadors();
+        Iterator it = treballadors.iterator();
+        while(it.hasNext()){
+            Treballador t = (Treballador) it.next();
+            choiceTrabajador.add(t.getNom());
+        }
+
         Servei s1 = new Servei (6,"Sabadell - Sevilla",t1.getId(),"20/10/2018","20:00","22:00");
         Servei s2 = new Servei (4,"Formentera - Ibiza",t2.getId(),"20/10/2018","20:00","22:00");
         Servei s3 = new Servei (5,"Ibiza - Formentera",t2.getId(),"20/10/2018","20:00","22:00");
