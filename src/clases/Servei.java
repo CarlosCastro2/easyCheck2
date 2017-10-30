@@ -87,7 +87,7 @@ public class Servei {
      public JLabel getLabel(){
         JLabel label = new JLabel("<html><FONT FACE=\"impact\" SIZE=6 COLOR=\"red\">"+servei+"</FONT> <br> "
                 + "<FONT FACE=\"courier\" SIZE=4><b>Data:</b> "+dataServei+" "+"<br> "
-                        + "<b>Hora Inici:</b> "+horaInici+" <b>Hora Fi:</b> "+horaFi+"<hr style=\"border:2px;\"></FONT></html>", SwingConstants.LEFT);
+                        + "<b>Hora Inici:</b> "+horaInici+" <b>Hora Fi:</b> "+horaFi+"<br> "+isAdmin(id_treballador)+"<hr style=\"border:2px;\"></FONT></html>", SwingConstants.LEFT);
         return label;
         //Integer id, Integer idServei, String localitzador, String dataServei, String nomClient, String cognomClient,String cognomClient2,String emailClient, String QRClient, String dniClient, String checkIn) {
        // return nomClient+" "+cognomClient+" "+cognomClient2+" Dni: "+dniClient+" "+emailClient+" "+"QR: "+QRClient+" "+checkIn(checkIn);
@@ -102,5 +102,16 @@ public class Servei {
             }
         }
         return serveis;
+    }
+    public String isAdmin (int treballador){
+        ArrayList<Treballador> treballadors = Treballador.getTreballadors();
+        Iterator<Treballador> it = treballadors.iterator();
+        while(it.hasNext()){
+            Treballador t = it.next();
+            if (t._id==treballador && t.esAdmin.equalsIgnoreCase("1")){
+                return "<b>Administrador:</b> "+t.nom+" "+t.cognom1+" "+t.cognom2;
+            } else return "<b>Treballador:</b> "+t.nom+" "+t.cognom1+" "+t.cognom2;
+        }
+        return null;
     }
 }

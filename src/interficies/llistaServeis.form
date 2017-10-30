@@ -94,7 +94,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Consulta serveis de tots els treballadors:"/>
+        <Property name="text" type="java.lang.String" value="Consulta serveis usuari administrador:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

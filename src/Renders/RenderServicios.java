@@ -16,13 +16,19 @@ import javax.swing.ListCellRenderer;
  * @author Carlos
  */
 public class RenderServicios extends JLabel implements ListCellRenderer {
-
+    static ImageIcon admin = new ImageIcon("admin.png");
+    static ImageIcon noAdmin= new ImageIcon("noAdmin.png");
     @Override
     public Component getListCellRendererComponent(JList jlist, Object e, int i,
             boolean isSelected, boolean cellHasFocus) {
         
         JLabel renderer = (JLabel) e;
         String valor = e.toString();
+        if (valor.contains("Administrador")){
+            renderer.setIcon(admin);
+        } else {
+            renderer.setIcon(noAdmin);
+        }
         setText(valor);
         if (isSelected){
             renderer.setBackground(jlist.getSelectionBackground());
