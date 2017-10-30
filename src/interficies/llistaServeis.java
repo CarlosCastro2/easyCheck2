@@ -50,10 +50,11 @@ public class llistaServeis extends javax.swing.JFrame {
                     }
                     int seleccionat = list.getSelectedIndex();
                     System.out.println(seleccionat);
-                    llistaReserves llistaReserves = new llistaReserves(idServei[seleccionat]);
-                    llistaReserves.setVisible(true);
-                    setLocationRelativeTo(null);
-                    //JOptionPane.showMessageDialog(null,"Servicio seleccionado: "+idServei[seleccionat]);
+                    if (reservesServei(idServei[seleccionat])){
+                        llistaReserves llistaReserves = new llistaReserves(idServei[seleccionat]);
+                        llistaReserves.setVisible(true);
+                        setLocationRelativeTo(null);
+                    } else JOptionPane.showMessageDialog(null,"El servei seleccionat no te reserves!");
 		}	
 	});
         llistaTots();
@@ -73,6 +74,17 @@ public class llistaServeis extends javax.swing.JFrame {
                 }
             }
         });
+    }
+    public Boolean reservesServei (int servei){
+        ArrayList<Reserva> reservas = Reserva.getReservas();
+        Iterator<Reserva> it = reservas.iterator();
+        while(it.hasNext()){
+            Reserva r = it.next();
+            if (r.getIdServei()== servei){
+                return true;
+            }
+        }
+        return false;
     }
     public void llistaTots(){
         ArrayList<Servei>listaServeis = Servei.getLlistaServeis();

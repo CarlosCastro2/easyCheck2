@@ -18,6 +18,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JFrame;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Carlos
@@ -64,7 +65,7 @@ public class llistaReserves extends javax.swing.JFrame {
     public static Integer getServei() {
         return servei;
     }
-
+    
     public static void setServei(Integer servei) {
         llistaReserves.servei = servei;
     }
