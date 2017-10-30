@@ -23,17 +23,17 @@ import javax.swing.event.ListSelectionListener;
  */
 public class GestioUsuaris extends javax.swing.JFrame {
 
-    DefaultListModel model;
+    public static DefaultListModel model;
     Treballador t1;
     private Treballador t3;
     private Treballador t4;
     Treballador t2;
+    private int selection;
 
     /**
      * Creates new form GestioUsuaris
      */
     public GestioUsuaris() {
-        
 
         initComponents();
         this.setLocationRelativeTo(null);
@@ -41,8 +41,8 @@ public class GestioUsuaris extends javax.swing.JFrame {
         model = new DefaultListModel();
         // _id.setVisible(false);
         jListTreballadors.setModel(model);
-      
-       InsereixTreballador();
+
+        InsereixTreballador();
 
     }
 
@@ -152,7 +152,7 @@ public class GestioUsuaris extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(238, 488, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -179,7 +179,7 @@ public class GestioUsuaris extends javax.swing.JFrame {
                                         .addGap(44, 44, 44)
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(dni, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                                        .addComponent(dni))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,48 +263,138 @@ public class GestioUsuaris extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        this.setVisible(false);
+       System.exit(0);
+     
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirActionPerformed
-
-        inserirList();
-        clearForm();
-
+        if (nom.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Formulari imcomplet");
+        } else {
+            inserirList();
+            clearForm();
+        }
     }//GEN-LAST:event_btnAfegirActionPerformed
 
     private void btnEsborraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsborraActionPerformed
 
-        model = (DefaultListModel) jListTreballadors.getModel();
-        int index = jListTreballadors.getSelectedIndex();
+        selection = jListTreballadors.getSelectedIndex();
+        Treballador t = (Treballador) model.getElementAt(selection);
+        String dni = t.getDni();
+        int index = cercaTreballadorPerDNI(t, Treballador.getTreballadors());
+
         if (JOptionPane.showConfirmDialog(null, "Esta a punt d'esborrar aquesta entrada?") == 0) {
-            model.removeElementAt(index);
+            Treballador.getTreballadors().remove(index);
+            model.removeAllElements();
+            actualitzaLlista();
         }
     }//GEN-LAST:event_btnEsborraActionPerformed
+    public void actualitzaLlista() {
+        for (int i = 0; i < Treballador.getSize(); i++) {
+            model.addElement(Treballador.getTreballadors().get(i));
+        }
+    }
+
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        jListTreballadors.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
-            Treballador t = jListTreballadors.getSelectedValue();
-            OmplirFormulari(t);
-
-        });
+               ModificarUsuari f= new ModificarUsuari();
+                this.setVisible(true);
+    
     }//GEN-LAST:event_btnModificarActionPerformed
+
     public void inserirList() {
 
         Treballador tr1 = new Treballador();
         tr1 = RecullirDadesFormulari();
-        model.addElement(tr1);
-        Treballador.setTreballadors(tr1);
+        String tr1_dni = tr1.getDni();
+        if (!compara(tr1_dni, Treballador.getTreballadors())) {
+            JOptionPane.showMessageDialog(null, "Treballador actualment en Actiu");
+        } else {
+            model.addElement(tr1);
+            Treballador.setTreballadors(tr1);
+        }
 
-        //  jListTreballadors.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//       jListTreballadors.addListSelectionListener(new ListSelectionListener() {
-//
-//            @Override
-//            public void valueChanged(ListSelectionEvent e) {
-//                   Treballador treballador= (Treballador) ((JList) e.getSource()).getSelectedValue();
-//               System.out.println(treballador.toString());
-//            }
-//        });
+    }
+
+    public boolean compara(String t1, ArrayList<Treballador> a) {
+        boolean compara = true;
+
+        for (int i = 0; i < a.size(); i++) {
+            if (t1.equals(a.get(i).getDni())) {
+                compara = false;
+            }
+
+        }
+        return compara;
+
+    }
+
+    public int cercaTreballadorPerDNI(Treballador t, ArrayList<Treballador> a) {
+        int index = 0;
+        for (int i = 0; i < a.size(); i++) {
+            if (t.getDni().equals(a.get(i).getDni())) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public Treballador RecullirDadesFormulari() {
+        String sNom = nom.getText();
+        String sCognom = cognom1.getText();
+        String sCognom2 = cognom2.getText();
+        String sLogin = login.getText();
+        String sPassword = password.getText();
+        String sDni = dni.getText();
+        String sEsAdmin = "";
+
+        //  int Id= Integer.parseInt(_id.getText());
+        if (esAdmin.getState()) {
+            sEsAdmin = "1";
+        } else {
+            sEsAdmin = "0";
+        }
+
+        return new Treballador(sNom, sCognom, sCognom2, sLogin, sPassword, sEsAdmin, sDni);
+
+    }
+
+    public void OmplirFormulari(Treballador t) {
+
+        // _id.setText(String.valueOf(t.getId()));
+        nom.setText(t.getNom());
+        cognom1.setText(t.getCognom1());
+        cognom2.setText(t.getCognom2());
+        dni.setText(t.getDni());
+        login.setText(t.getLogin());
+        password.setText(t.getPassword());
+        String value = t.getEsAdmin();
+        if (value.equals("1")) {
+            esAdmin.setState(true);
+        } else {
+            esAdmin.setState(false);
+        }
+
+    }
+
+    public void clearForm() {
+        nom.setText("");
+        cognom1.setText("");
+        cognom2.setText("");
+        login.setText("");
+        password.setText("");
+        dni.setText("");
+        esAdmin.setState(false);
+        // _id.setText("");
+    }
+
+    public void InsereixTreballador() {
+        Treballador.getTreballadors().clear();
+        Treballador.exemples();
+        for (int i = 0; i < Treballador.getSize(); i++) {
+            Treballador t = Treballador.getTreballadors().get(i);
+            model.addElement(t);
+        }
     }
 
     /**
@@ -371,60 +461,4 @@ public class GestioUsuaris extends javax.swing.JFrame {
     private javax.swing.JTextField password;
     // End of variables declaration//GEN-END:variables
 
-    public Treballador RecullirDadesFormulari() {
-        String sNom = nom.getText();
-        String sCognom = cognom1.getText();
-        String sCognom2 = cognom2.getText();
-        String sLogin = login.getText();
-        String sPassword = password.getText();
-        String sDni = dni.getText();
-        String sEsAdmin = "";
-
-        //  int Id= Integer.parseInt(_id.getText());
-        if (esAdmin.getState()) {
-            sEsAdmin = "1";
-        } else {
-            sEsAdmin = "0";
-        }
-
-        return new Treballador(sNom, sCognom, sCognom2, sLogin, sPassword, sEsAdmin, sDni);
-
-    }
-
-    public void OmplirFormulari(Treballador t) {
-
-        // _id.setText(String.valueOf(t.getId()));
-        nom.setText(t.getNom());
-        cognom1.setText(t.getCognom1());
-        cognom2.setText(t.getCognom2());
-        dni.setText(t.getDni());
-        login.setText(t.getLogin());
-        password.setText(t.getPassword());
-        String value = t.getEsAdmin();
-        if (value.equals("1")) {
-            esAdmin.setState(true);
-        } else {
-            esAdmin.setState(false);
-        }
-
-    }
-
-    public void clearForm() {
-        nom.setText("");
-        cognom1.setText("");
-        cognom2.setText("");
-        login.setText("");
-        password.setText("");
-        dni.setText("");
-        esAdmin.setState(false);
-        // _id.setText("");
-    }
-
-    public void InsereixTreballador() {
-      Treballador.exemples();
-        for (int i=0;i<Treballador.getSize();i++){
-            Treballador t= Treballador.getTreballadors().get(i);
-            model.addElement(t);
-        }
-    }
 }
