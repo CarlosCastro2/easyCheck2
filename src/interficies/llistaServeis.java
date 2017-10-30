@@ -81,7 +81,8 @@ public class llistaServeis extends javax.swing.JFrame {
         Iterator<Treballador> it = treballadors.iterator();
         while (it.hasNext()) {
             Treballador t = it.next();
-            if (t.nom.equalsIgnoreCase(nom)) {
+            String nomTreballador = t.nom+" "+t.cognom1+" "+t.cognom2;
+            if (nomTreballador.equalsIgnoreCase(nom)) {
                 idTreballador = t.getId();
             }
         }
@@ -140,7 +141,7 @@ public class llistaServeis extends javax.swing.JFrame {
         Iterator it = treballadors.iterator();
         while(it.hasNext()){
             Treballador t = (Treballador) it.next();
-            choiceTrabajador.add(t.getNom());
+            choiceTrabajador.add(t.getNom()+" "+t.getCognom1()+" "+t.getCognom2());
         }
 
         Servei s1 = new Servei (6,"Sabadell - Sevilla",t1.getId(),"20/10/2018","20:00","22:00");
