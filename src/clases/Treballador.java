@@ -6,57 +6,152 @@
 package clases;
 
 import static clases.Servei.llistaServeis;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import java.util.Iterator;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-/**
- *
- * @author Maria
- */
-public class Treballador {
-
-    public String nom, cognom1, cognom2, login, password, esAdmin, dni;
-    int _id;
+public class Treballador implements Serializable{
     static ArrayList<Treballador> treballadors = new ArrayList();
-
-    public Treballador() {
+    private int _id;
+    private String nom;
+    private String cognom1;
+    private String cognom2;
+    private String login;
+    private String password;
+    private int esAdmin;
+    private List<Servei> llistaServeis = new ArrayList();
+    
+    public Treballador(){
+        
     }
 
-    public Treballador(int _id, String nom, String cognom1, String cognom2, String login, String password, String esAdmin, String dni) {
-        this.nom = nom;
-        this.cognom1 = cognom1;
-        this.cognom2 = cognom2;
-        this.login = login;
-        this.password = password;
-        this.esAdmin = esAdmin;
-        this.dni = dni;
+    public Treballador(int _id, String nom, String cognom1, String cognom2, String login, String password, int esAdmin, List<Servei> llista) {
         this._id = _id;
-    }
-
-    public Treballador(String nom, String cognom1, String cognom2, String login, String password, String esAdmin, String dni) {
         this.nom = nom;
         this.cognom1 = cognom1;
         this.cognom2 = cognom2;
         this.login = login;
         this.password = password;
         this.esAdmin = esAdmin;
-        this.dni = dni;
+        this.llistaServeis = llista;
     }
 
+    /**
+     * @return the _id
+     */
     public int getId() {
         return _id;
     }
 
+    /**
+     * @param _id the _id to set
+     */
     public void setId(int _id) {
         this._id = _id;
     }
 
+    /**
+     * @return the nom
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * @param nom the nom to set
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    /**
+     * @return the cognom1
+     */
+    public String getCognom1() {
+        return cognom1;
+    }
+
+    /**
+     * @param cognom1 the cognom1 to set
+     */
+    public void setCognom1(String cognom1) {
+        this.cognom1 = cognom1;
+    }
+
+    /**
+     * @return the cognom2
+     */
+    public String getCognom2() {
+        return cognom2;
+    }
+
+    /**
+     * @param cognom2 the cognom2 to set
+     */
+    public void setCognom2(String cognom2) {
+        this.cognom2 = cognom2;
+    }
+
+    /**
+     * @return the login
+     */
+    public String getLogin() {
+        return login;
+    }
+
+    /**
+     * @param login the login to set
+     */
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return the esAdmin
+     */
+    public int getEsAdmin() {
+        return esAdmin;
+    }
+
+    /**
+     * @param esAdmin the esAdmin to set
+     */
+    public void setEsAdmin(int esAdmin) {
+        this.esAdmin = esAdmin;
+    }
+
+    /**
+     * @return the llistaServeis
+     */
+    public List<Servei> getLlistaServeis() {
+        return llistaServeis;
+    }
+
+    /**
+     * @param llistaServeis the llistaServeis to set
+     */
+    public void setLlistaServeis(List<Servei> llistaServeis) {
+        this.llistaServeis = llistaServeis;
+    }
+    
     public static ArrayList<Treballador> getTreballadors() {
         return treballadors;
     }
@@ -64,78 +159,8 @@ public class Treballador {
     public static void setTreballadors(Treballador treballador) {
         Treballador.treballadors.add(treballador);
     }
-
-    public static int getSize() {
-        return treballadors.size();
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getCognom1() {
-        return cognom1;
-    }
-
-    public void setCognom1(String cognom1) {
-        this.cognom1 = cognom1;
-    }
-
-    public String getCognom2() {
-        return cognom2;
-    }
-
-    public void setCognom2(String cognom2) {
-        this.cognom2 = cognom2;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEsAdmin() {
-        return esAdmin;
-    }
-
-    public void setEsAdmin(String esAdmin) {
-        this.esAdmin = esAdmin;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    @Override
     public String toString() {
         return "Treballador: " + nom + "  " + cognom1 + "  " + cognom2;
-    }
-    
-    public static void exemples() {
-       Treballador t1 = new Treballador(5,"Maria", "Puig", "Cadafalch", "login_m", "xxx", "1", "15653131A");
-       Treballador  t2 = new Treballador(6,"Pere", "Maria", "Fernan", "login_p", "xxx", "0", "5317731A");
-         Treballador t3 = new Treballador(7,"Eric", "Garcia", "Tinent", "login_e", "xxx", "1", "122253131A");
-         Treballador t4 = new Treballador(8,"Antonia", "Montseny", "Puig", "login_a", "xxx", "1", "99953131A");
-        Treballador.setTreballadors(t1);
-        Treballador.setTreballadors(t2);
-        Treballador.setTreballadors(t3);
-        Treballador.setTreballadors(t4);
-        
     }
 
 }

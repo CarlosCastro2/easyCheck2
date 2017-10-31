@@ -19,6 +19,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import java.util.List;
 /**
  *
  * @author Carlos
@@ -41,12 +42,12 @@ public class llistaReserves extends javax.swing.JFrame {
         jListaReservas.setCellRenderer(new RenderReservas());
         jListaReservas.setSelectionBackground(Color.ORANGE);
         jLabel2.setText(obtenirNomServei());
-        ArrayList<Reserva> listaReservas = Reserva.getReservas();
+        ArrayList<Reserva> listaReservas =(ArrayList<Reserva>)Reserva.getReservas();
         Iterator it = listaReservas.iterator();
         modeloLista.clear();
         while(it.hasNext()){
             Reserva reserva = (Reserva) it.next();
-            if (reserva.getIdServei()== servei){
+            if (reserva.getId_servei()== servei){
                 modeloLista.addElement(reserva.getLabel());  
             } 
         } 
@@ -56,8 +57,8 @@ public class llistaReserves extends javax.swing.JFrame {
         Iterator<Servei> it = llistaServeis.iterator();
         while(it.hasNext()){
             Servei s = it.next();
-            if (s.getIdServei()==servei){
-                return s.getServei();
+            if (s.getId()==servei){
+                return s.getDescripcio();
             }
         }
         return null;
