@@ -165,17 +165,18 @@ public class llistaServeis extends javax.swing.JFrame {
         }
         
         Reserva r1 = new Reserva (1,6,"LOC12345","13/02/2018","Alberto","Garcia","Cortes","636778756","alberto@gmail.com","QR12345","47169530D",0);
-        Reserva r2 = new Reserva (2,6,"LOC12345","13/02/2018","Juan","Jimenez","Canos","636779745","juan@gmail.com","QR12345","47169530H",1);
+        Reserva r2 = new Reserva (2,5,"LOC12345","13/02/2018","Juan","Jimenez","Canos","636779745","juan@gmail.com","QR12345","47169530H",1);
         Reserva r3 = new Reserva (3,6,"LOC12345","13/02/2018","Diego","Ruiz","Mateos","6679349342","diego@gmail.com","QR12345","47169530I",0);
         Reserva.setReservas(r1);Reserva.setReservas(r2);Reserva.setReservas(r3);
         
         List<Reserva> llistaReserva = new ArrayList();
-        llistaReserva.add(r1); llistaReserva.add(r2); llistaReserva.add(r3);
+        llistaReserva.add(r1);  llistaReserva.add(r3);
         List<Reserva> reservaBuida = new ArrayList();
-        
+        List<Reserva> llistaReserva5 = new ArrayList();
+        llistaReserva5.add(r2);
         Servei s1 = new Servei (6,"Sevilla- Sabadell",t1.getId(),"20/10/2018","20:00","22:00",llistaReserva);
         Servei s2 = new Servei (4,"Formentera - Ibiza",t2.getId(),"20/10/2018","20:00","22:00",reservaBuida);
-        Servei s3 = new Servei (5,"Ibiza - Formentera",t2.getId(),"20/10/2018","20:00","22:00",reservaBuida);
+        Servei s3 = new Servei (5,"Ibiza - Formentera",t2.getId(),"20/10/2018","20:00","22:00",llistaReserva5);
         Servei s4 = new Servei (3,"Barcelona - Paris",t3.getId(),"20/10/2018","20:00","22:00",reservaBuida);
         Servei s5 = new Servei (1,"Sabadell - Sevilla",t3.getId(),"20/10/2018","20:00","22:00",reservaBuida);
         Servei s6 = new Servei (2,"Paris - Barcelona",t1.getId(),"22/10/2018","20:00","22:00",reservaBuida);
