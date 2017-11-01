@@ -22,6 +22,10 @@ import clases.Servei;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.ListModel;
+import Utils.DescargaTreballador;
+import Utils.DescargaServei;
+import Utils.DescargaReserva;
+
 
 /**
  *
@@ -149,42 +153,38 @@ public class llistaServeis extends javax.swing.JFrame {
         } 
     }
     public void añadirObjetosAClases(){
+        Treballador.getTreballadors().clear();
+        Servei.getLlistaServeis().clear();
+        Reserva.getReservas().clear();
+        DescargaReserva totsReserves = new DescargaReserva();
+        ArrayList<Reserva> reserves = (ArrayList<Reserva>) totsReserves.obtenirReservesDelServer();
+        Iterator itR = reserves.iterator();
+        while (itR.hasNext()){
+            Reserva r = (Reserva) itR.next();
+            Reserva.setReservas(r);
+        } 
         
-        List<Servei> serveiBuida = new ArrayList();
-        Treballador t1= new Treballador (2,"Carlos","Castro","Cañabate","user","password",1,serveiBuida);
-        Treballador t2= new Treballador (3,"Toni","Torres","Marí","user","password",0,serveiBuida);
-        Treballador t3= new Treballador (1,"Maria","Ortega","Cobos","user","password",0,serveiBuida);
-        Treballador.setTreballadors(t1);Treballador.setTreballadors(t2);Treballador.setTreballadors(t3);
+        DescargaServei totsServeis= new DescargaServei();
+        DescargaTreballador todo = new DescargaTreballador();
+        ArrayList<Treballador> treballadors = (ArrayList<Treballador>) todo.obtenirTreballadorsDelServer();
         
         choiceTrabajador.add("Tots");
-        ArrayList<Treballador> treballadors = Treballador.getTreballadors();
         Iterator it = treballadors.iterator();
         while(it.hasNext()){
             Treballador t = (Treballador) it.next();
+            Treballador.setTreballadors(t);
+            
+            ArrayList<Servei> serveis = (ArrayList<Servei>) totsServeis.obtenirServeisDelServer();
+            Iterator itS = serveis.iterator();
+            while (itS.hasNext()){
+                Servei s = (Servei) itS.next();
+                if (t.getId()==s.getId_treballador()){
+                    Servei.setLlistaServeis(s);
+                }
+            }
             choiceTrabajador.add(t.getNom()+" "+t.getCognom1()+" "+t.getCognom2());
         }
-        
-        Reserva r1 = new Reserva (1,6,"LOC12345","13/02/2018","Alberto","Garcia","Cortes","636778756","alberto@gmail.com","QR12345","47169530D",0);
-        Reserva r2 = new Reserva (2,5,"LOC12345","13/02/2018","Juan","Jimenez","Canos","636779745","juan@gmail.com","QR12345","47169530H",1);
-        Reserva r3 = new Reserva (3,6,"LOC12345","13/02/2018","Diego","Ruiz","Mateos","6679349342","diego@gmail.com","QR12345","47169530I",0);
-        Reserva.setReservas(r1);Reserva.setReservas(r2);Reserva.setReservas(r3);
-        
-        List<Reserva> llistaReserva = new ArrayList();
-        llistaReserva.add(r1);  llistaReserva.add(r3);
-        List<Reserva> reservaBuida = new ArrayList();
-        List<Reserva> llistaReserva5 = new ArrayList();
-        llistaReserva5.add(r2);
-        Servei s1 = new Servei (6,"Sevilla- Sabadell",t1.getId(),"20/10/2018","20:00","22:00",llistaReserva);
-        Servei s2 = new Servei (4,"Formentera - Ibiza",t2.getId(),"20/10/2018","20:00","22:00",reservaBuida);
-        Servei s3 = new Servei (5,"Ibiza - Formentera",t2.getId(),"20/10/2018","20:00","22:00",llistaReserva5);
-        Servei s4 = new Servei (3,"Barcelona - Paris",t3.getId(),"20/10/2018","20:00","22:00",reservaBuida);
-        Servei s5 = new Servei (1,"Sabadell - Sevilla",t3.getId(),"20/10/2018","20:00","22:00",reservaBuida);
-        Servei s6 = new Servei (2,"Paris - Barcelona",t1.getId(),"22/10/2018","20:00","22:00",reservaBuida);
-        
-        Servei.setLlistaServeis(s1); Servei.setLlistaServeis(s2);Servei.setLlistaServeis(s3);Servei.setLlistaServeis(s4);Servei.setLlistaServeis(s5);Servei.setLlistaServeis(s6);
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

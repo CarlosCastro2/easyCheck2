@@ -15,7 +15,7 @@ import org.json.simple.JSONValue;
  */
 public class JSONTreballador {
 
-    
+    /*
 
     public static String conversioJson(Treballador t) {
         String nom = t.getNom();
@@ -73,7 +73,7 @@ public class JSONTreballador {
         System.out.println("PASS: " + t.getPassword());
         System.out.println("DNI: " + t.getDni());
     }
-    
+    */
 
    
 }

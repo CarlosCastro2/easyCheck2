@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 package interficies;
+import Utils.DescargaTreballador;
 
 import clases.Treballador;
+import clases.Servei;
+
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -347,16 +351,16 @@ public class GestioUsuaris extends javax.swing.JFrame {
         String sLogin = login.getText();
         String sPassword = password.getText();
         String sDni = dni.getText();
-        String sEsAdmin = "";
+        Integer sEsAdmin = 0;
 
         //  int Id= Integer.parseInt(_id.getText());
         if (esAdmin.getState()) {
-            sEsAdmin = "1";
+            sEsAdmin = 1;
         } else {
-            sEsAdmin = "0";
+            sEsAdmin = 0;
         }
-
-        return new Treballador(sNom, sCognom, sCognom2, sLogin, sPassword, sEsAdmin, sDni);
+        List<Servei> serv = new ArrayList();
+        return new Treballador(0,sNom, sCognom, sCognom2, sDni, sLogin, sPassword, sEsAdmin,serv);
 
     }
 
@@ -369,8 +373,8 @@ public class GestioUsuaris extends javax.swing.JFrame {
         dni.setText(t.getDni());
         login.setText(t.getLogin());
         password.setText(t.getPassword());
-        String value = t.getEsAdmin();
-        if (value.equals("1")) {
+        Integer value = t.getEsAdmin();
+        if (value==1) {
             esAdmin.setState(true);
         } else {
             esAdmin.setState(false);
@@ -390,10 +394,19 @@ public class GestioUsuaris extends javax.swing.JFrame {
     }
 
     public void InsereixTreballador() {
+        
         Treballador.getTreballadors().clear();
-        Treballador.exemples();
+        /*Treballador.exemples();
         for (int i = 0; i < Treballador.getSize(); i++) {
             Treballador t = Treballador.getTreballadors().get(i);
+            model.addElement(t);
+        }*/
+        DescargaTreballador todo = new DescargaTreballador();
+        ArrayList<Treballador> treballadors = (ArrayList<Treballador>) todo.obtenirTreballadorsDelServer();
+        Iterator it = treballadors.iterator();
+        while(it.hasNext()){
+            Treballador t = (Treballador) it.next();
+            Treballador.setTreballadors(t);
             model.addElement(t);
         }
     }

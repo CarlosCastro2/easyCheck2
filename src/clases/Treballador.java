@@ -20,6 +20,7 @@ public class Treballador implements Serializable{
     private String nom;
     private String cognom1;
     private String cognom2;
+    private String dni;
     private String login;
     private String password;
     private int esAdmin;
@@ -29,11 +30,12 @@ public class Treballador implements Serializable{
         
     }
 
-    public Treballador(int _id, String nom, String cognom1, String cognom2, String login, String password, int esAdmin, List<Servei> llista) {
+    public Treballador(int _id, String nom, String cognom1, String cognom2, String dni,String login, String password, int esAdmin, List<Servei> llista) {
         this._id = _id;
         this.nom = nom;
         this.cognom1 = cognom1;
         this.cognom2 = cognom2;
+        this.dni = dni;
         this.login = login;
         this.password = password;
         this.esAdmin = esAdmin;
@@ -137,6 +139,19 @@ public class Treballador implements Serializable{
     public void setEsAdmin(int esAdmin) {
         this.esAdmin = esAdmin;
     }
+    /**
+     * @return the dni
+     */
+    public String getDni() {
+        return dni;
+    }
+
+    /**
+     * @param dni the dni to set
+     */
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
 
     /**
      * @return the llistaServeis
@@ -161,6 +176,9 @@ public class Treballador implements Serializable{
     }
     public String toString() {
         return "Treballador: " + nom + "  " + cognom1 + "  " + cognom2;
+    }
+     public static int getSize() {
+        return treballadors.size();
     }
 
 }
