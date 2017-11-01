@@ -11,7 +11,7 @@ import org.json.simple.JSONValue;
 
 /**
  *
- * @author Maria
+ * @authora Maria
  */
 public class JSONTreballador {
 
